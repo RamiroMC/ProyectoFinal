@@ -5,6 +5,11 @@
 
 package InterfacesApp;
 
+import ClasesApp.Mecanico;
+import InterfacesLogin.Login;
+import InterfacesLogin.LoginNuevo;
+import InterfacesLogin.RegistroNuevo;
+import java.util.ArrayList;
 /**
  *
  * @author MADE
@@ -126,6 +131,7 @@ public class Tablon extends javax.swing.JFrame {
         jLabel5.setToolTipText("");
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        CerrarSesion.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         CerrarSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CerrarSesion.setText("CERRAR SESIÓN");
         CerrarSesion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -152,7 +158,7 @@ public class Tablon extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -161,7 +167,7 @@ public class Tablon extends javax.swing.JFrame {
                             .addComponent(jLabelTrabajos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CajaBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ConsultaT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ConsultaT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -193,7 +199,7 @@ public class Tablon extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                     .addComponent(CerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addGap(0, 64, Short.MAX_VALUE))
         );
 
         Contenedor.setBackground(new java.awt.Color(255, 255, 255));
@@ -288,7 +294,35 @@ public class Tablon extends javax.swing.JFrame {
     }//GEN-LAST:event_ConsultaTMouseClicked
 
     private void CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarSesionMouseClicked
-        // TODO add your handling code here:
+       //TODO add your handling code here:
+        
+        try {
+         
+        //Leer mecánicos desde el archivo binario
+        ArrayList<Mecanico> mecanicos = RegistroNuevo.leerBinario("mecanicos.dat");
+
+        //Buscar el mecánico autenticado y actualizar su estado
+        for (Mecanico mecanico : mecanicos) {
+            if (mecanico.getEstado()) {
+                //Actualizar el estado
+                mecanico.setEstado(false);
+                break;
+            }
+        }
+
+            //Escribir los mecánicos actualizados en el archivo binario
+            LoginNuevo.actualizarBinario("mecanicos.dat", mecanicos);
+
+            //Cerrar la ventana actual
+            this.dispose();
+
+            //Mostrar la ventana de inicio de sesión (Login)
+            Login login = new Login();
+            login.setVisible(true);
+            RegistroNuevo.imprimirContenidoBinario("mecanicos.dat");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_CerrarSesionMouseClicked
 
     /**

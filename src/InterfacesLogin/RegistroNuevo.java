@@ -179,38 +179,38 @@ public class RegistroNuevo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarseMouseClicked
-         //Obtener los datos de los campos de texto
-    String nombreMecanico = Nombre.getText();
-    String contraseñaMecanico = Contraseña.getText();
+       //Obtener los datos de los campos de texto
+            String nombreMecanico = Nombre.getText();
+            String contraseñaMecanico = Contraseña.getText();
 
-    try {
-        //Validar que el nombre y la contraseña no estén vacíos
-        if (nombreMecanico.isEmpty() || contraseñaMecanico.isEmpty()) {
-            throw new IllegalArgumentException("Ambos campos deben llenarse.");
-        }
-
-        //Validar que el nombre solo contenga letras
-        if (!esNombreValido(nombreMecanico)) {
-            throw new IllegalArgumentException("El nombre debe contener solo letras.");
-        }
-
-        //Validar que no haya mecánicos con el mismo nombre y contraseña
-        ArrayList<Mecanico> mecanicos = leerBinario("mecanicos.dat");
-        for (Mecanico existente : mecanicos) {
-            if (existente.getNombre().equals(nombreMecanico) && existente.getContraseña().equals(contraseñaMecanico)) {
-                throw new IllegalArgumentException("Ya existe un mecánico con el mismo nombre y contraseña.");
+        try {
+            //Validar que el nombre y la contraseña no estén vacíos
+            if (nombreMecanico.isEmpty() || contraseñaMecanico.isEmpty()) {
+                throw new IllegalArgumentException("Ambos campos deben llenarse.");
             }
-        }
 
-        //Crear un objeto Mecanico
-        Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, 0);
+            //Validar que el nombre solo contenga letras
+            if (!esNombreValido(nombreMecanico)) {
+                throw new IllegalArgumentException("El nombre debe contener solo letras.");
+            }
 
-        //Guardar el Mecanico en el archivo binario
-        escribirBinario("mecanicos.dat", mecanico);
+            //Validar que no haya mecánicos con el mismo nombre y contraseña
+            ArrayList<Mecanico> mecanicos = leerBinario("mecanicos.dat");
+            for (Mecanico existente : mecanicos) {
+                if (existente.getNombre().equals(nombreMecanico) && existente.getContraseña().equals(contraseñaMecanico)) {
+                    throw new IllegalArgumentException("Ya existe un mecánico con el mismo nombre y contraseña.");
+                }
+            }
 
-        /* Imprimir el contenido del archivo binario en la consola
-         imprimirContenidoBinario("mecanicos.dat");
-        */
+            //Crear un objeto Mecanico
+            Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, 0,false);
+
+            //Guardar el Mecanico en el archivo binario
+            escribirBinario("mecanicos.dat", mecanico);
+
+            //Imprimir el contenido del archivo binario en la consola
+            imprimirContenidoBinario("mecanicos.dat");
+        
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -239,8 +239,8 @@ public class RegistroNuevo extends javax.swing.JPanel {
     }
   
     //Metodo auxiliar para verificar que se estan guardando lo datos en el archivo.
-    /*  
-    private static void imprimirContenidoBinario(String ruta) {
+    
+   public static void imprimirContenidoBinario(String ruta) {
         ArrayList<Mecanico> mecanicos = leerBinario(ruta);
 
         if (mecanicos != null) {
@@ -250,7 +250,7 @@ public class RegistroNuevo extends javax.swing.JPanel {
         } else {
             System.out.println("No hay datos en el archivo.");
             }
-    }*/
+    }
   private void escribirBinario(String ruta, Mecanico mecanico) {
         try {
         //Leer todos los objetos existentes en el archivo binario
