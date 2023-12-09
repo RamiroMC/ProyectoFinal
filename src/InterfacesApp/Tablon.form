@@ -106,7 +106,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelBotonClientes" max="32767" attributes="0"/>
-                                  <Component id="jLabelTrabajos" max="32767" attributes="0"/>
+                                  <Component id="EmpezarTrabajos" max="32767" attributes="0"/>
                                   <Component id="inventario" alignment="0" max="32767" attributes="0"/>
                                   <Component id="CajaBoton" alignment="0" max="32767" attributes="0"/>
                                   <Component id="ConsultaT" alignment="1" pref="125" max="32767" attributes="0"/>
@@ -125,7 +125,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="64" max="-2" attributes="0"/>
-                          <Component id="jLabelTrabajos" min="-2" pref="64" max="-2" attributes="0"/>
+                          <Component id="EmpezarTrabajos" min="-2" pref="64" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -158,7 +158,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabelTrabajos">
+            <Component class="javax.swing.JLabel" name="EmpezarTrabajos">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Showcard Gothic" size="9" style="0"/>
@@ -171,6 +171,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="EmpezarTrabajosMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelBotonClientes">
               <Properties>

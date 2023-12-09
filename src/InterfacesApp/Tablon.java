@@ -33,7 +33,7 @@ public class Tablon extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabelTrabajos = new javax.swing.JLabel();
+        EmpezarTrabajos = new javax.swing.JLabel();
         jLabelBotonClientes = new javax.swing.JLabel();
         inventario = new javax.swing.JLabel();
         CajaBoton = new javax.swing.JLabel();
@@ -58,10 +58,15 @@ public class Tablon extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setPreferredSize(new java.awt.Dimension(197, 700));
 
-        jLabelTrabajos.setFont(new java.awt.Font("Showcard Gothic", 0, 9)); // NOI18N
-        jLabelTrabajos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTrabajos.setText("realizar nuevo trabajo");
-        jLabelTrabajos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        EmpezarTrabajos.setFont(new java.awt.Font("Showcard Gothic", 0, 9)); // NOI18N
+        EmpezarTrabajos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EmpezarTrabajos.setText("realizar nuevo trabajo");
+        EmpezarTrabajos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        EmpezarTrabajos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmpezarTrabajosMouseClicked(evt);
+            }
+        });
 
         jLabelBotonClientes.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         jLabelBotonClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -164,7 +169,7 @@ public class Tablon extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelBotonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelTrabajos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(EmpezarTrabajos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CajaBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ConsultaT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))))
@@ -178,7 +183,7 @@ public class Tablon extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTrabajos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EmpezarTrabajos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelBotonClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -325,6 +330,17 @@ public class Tablon extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_CerrarSesionMouseClicked
 
+    private void EmpezarTrabajosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpezarTrabajosMouseClicked
+        IniciarTrabajo p = new  IniciarTrabajo();
+        p.setSize(800, 700);
+        Contenedor.removeAll();
+        Contenedor.add(p);
+        Contenedor.revalidate();
+        Contenedor.repaint();
+        Contenedor.setSize(800, 700);
+        Contenedor.setLocation(200, 0);
+    }//GEN-LAST:event_EmpezarTrabajosMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -364,6 +380,7 @@ public class Tablon extends javax.swing.JFrame {
     private javax.swing.JLabel CerrarSesion;
     private javax.swing.JLabel ConsultaT;
     private javax.swing.JPanel Contenedor;
+    private javax.swing.JLabel EmpezarTrabajos;
     private javax.swing.JLabel inventario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -373,7 +390,6 @@ public class Tablon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelBotonClientes;
-    private javax.swing.JLabel jLabelTrabajos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
