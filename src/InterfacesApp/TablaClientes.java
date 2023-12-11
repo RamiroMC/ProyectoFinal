@@ -38,6 +38,7 @@ public class TablaClientes extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        EliminarCliente = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -134,6 +135,16 @@ public class TablaClientes extends javax.swing.JPanel {
                 .addGap(0, 379, Short.MAX_VALUE))
         );
 
+        EliminarCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        EliminarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EliminarCliente.setText("ELIMINAR CLIENTE");
+        EliminarCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        EliminarCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EliminarClienteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout ContenedorClientesLayout = new javax.swing.GroupLayout(ContenedorClientes);
         ContenedorClientes.setLayout(ContenedorClientesLayout);
         ContenedorClientesLayout.setHorizontalGroup(
@@ -148,8 +159,13 @@ public class TablaClientes extends javax.swing.JPanel {
                     .addComponent(Registro, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldBuscarCliente)
-                .addGap(34, 34, 34))
+                .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContenedorClientesLayout.createSequentialGroup()
+                        .addComponent(jTextFieldBuscarCliente)
+                        .addGap(34, 34, 34))
+                    .addGroup(ContenedorClientesLayout.createSequentialGroup()
+                        .addComponent(EliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
         );
         ContenedorClientesLayout.setVerticalGroup(
@@ -164,7 +180,8 @@ public class TablaClientes extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(Registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EliminarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
         );
@@ -198,9 +215,14 @@ public class TablaClientes extends javax.swing.JPanel {
         ContenedorClientes.setLocation(200, 0);
     }//GEN-LAST:event_RegistroMouseClicked
 
+    private void EliminarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarClienteMouseClicked
+       
+    }//GEN-LAST:event_EliminarClienteMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ContenedorClientes;
+    private javax.swing.JLabel EliminarCliente;
     private javax.swing.JLabel Registro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
