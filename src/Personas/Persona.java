@@ -6,7 +6,7 @@ package Personas;
 
 /**
  *
- * @author JOSE
+ * @author Mondongo
  */
 public abstract class Persona {
 

@@ -6,14 +6,10 @@ package InterfacesPrincipales.inicio;
  */
 
 
+import ArchivosCRUD.MecanicosCRUD;
 import Personas.Mecanico;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 /**
  *
  * @author MADE
@@ -196,7 +192,7 @@ public class RegistroNuevo extends javax.swing.JPanel {
             }
 
             //Validar que no haya mecánicos con el mismo nombre y contraseña
-            ArrayList<Mecanico> mecanicos = leerBinario("mecanicos.dat");
+            ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
             for (Mecanico existente : mecanicos) {
                 if (existente.getNombre().equals(nombreMecanico) && existente.getContraseña().equals(contraseñaMecanico)) {
                     throw new IllegalArgumentException("Ya existe un mecánico con el mismo nombre y contraseña.");
@@ -207,11 +203,9 @@ public class RegistroNuevo extends javax.swing.JPanel {
             Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, 0);
 
             //Guardar el Mecanico en el archivo binario
-            escribirBinario("mecanicos.dat", mecanico);
+            MecanicosCRUD.Create(mecanico);
 
-            //Imprimir el contenido del archivo binario en la consola
-            imprimirContenidoBinario("mecanicos.dat");
-        
+   
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -226,7 +220,7 @@ public class RegistroNuevo extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_ContraseñaActionPerformed
     
-    private boolean esNombreValido(String nombre) {
+    public boolean esNombreValido(String nombre) {
         //Se itera sobre cada carácter en el nombre utilizando un bucle for-each.
         for (char c : nombre.toCharArray()) {
             //Se verifica si el carácter actual no es una letra.
@@ -241,61 +235,7 @@ public class RegistroNuevo extends javax.swing.JPanel {
   
     //Metodo auxiliar para verificar que se estan guardando lo datos en el archivo.
     
-   public static void imprimirContenidoBinario(String ruta) {
-        ArrayList<Mecanico> mecanicos = leerBinario(ruta);
-
-        if (mecanicos != null) {
-            for (Mecanico mecanico : mecanicos) {
-                System.out.println(mecanico);
-            }
-        } else {
-            System.out.println("No hay datos en el archivo.");
-            }
-    }
-  private void escribirBinario(String ruta, Mecanico mecanico) {
-        try {
-        //Leer todos los objetos existentes en el archivo binario
-        ArrayList<Mecanico> mecanicos = leerBinario(ruta);
-
-        //Agregar el nuevo Mecanico al ArrayList existente
-        mecanicos.add(mecanico);
-
-        //Se crea un FileOutputStream para escribir en el archivo binario en la ruta especificada
-        FileOutputStream f = new FileOutputStream(ruta);
-        ObjectOutputStream file = new ObjectOutputStream(f);
-
-        //Se escribe el ArrayList de Mecanicos en el archivo
-        file.writeObject(mecanicos.toArray(Mecanico[]::new));
-
-        //Se cierra el archivo después de la escritura
-        file.close();
-        } catch (IOException ex) {
-            //Manejo de excepciones: Imprime el error en la consola en caso de fallo en la escritura.
-            System.out.println(ex);
-        }
-    }
-
-   public static ArrayList<Mecanico> leerBinario(String ruta) {
-        try {
-        //Se crea un ObjectInputStream para leer el archivo binario en la ruta especificada.
-        ObjectInputStream file = new ObjectInputStream(new FileInputStream(ruta));
-
-        //Se lee el arreglo de objetos Mecanico del archivo y se realiza un casting a Mecanico[].
-        Mecanico[] mecanicos = (Mecanico[]) file.readObject();
-
-        //Se cierra el archivo después de la lectura.
-        file.close();
-
-        //Se convierte el array de Mecanico a ArrayList<Mecanico>.
-        return new ArrayList<>(Arrays.asList(mecanicos));
-        } catch (ClassNotFoundException | IOException ex) {
-            //Manejo de excepciones: Imprime el error en la consola.
-            System.out.println(ex);
-        }
-
-        //En caso de error o archivo vacío, se devuelve una ArrayList vacía.
-        return new ArrayList<>();
-    }
+ 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Contraseña;

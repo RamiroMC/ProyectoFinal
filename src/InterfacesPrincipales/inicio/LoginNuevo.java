@@ -5,12 +5,10 @@ package InterfacesPrincipales.inicio;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 
+import ArchivosCRUD.MecanicosCRUD;
 import InterfacesLogin.Error;
 import InterfacesPrincipales.Tablon;
 import Personas.Mecanico;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import java.util.ArrayList;
@@ -176,21 +174,21 @@ public class LoginNuevo extends javax.swing.JPanel {
             }
 
             //Validar datos en el archivo binario.
-            ArrayList<Mecanico> mecanicos = RegistroNuevo.leerBinario("mecanicos.dat");
+            ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
             boolean usuarioAutenticado = false;
 
             //Iterar sobre la lista de mecánicos para verificar los datos.
             for (Mecanico mecanico : mecanicos) {
                 if (mecanico.getNombre().equals(nombreUsuario) && mecanico.getContraseña().equals(contraseñaUsuario)) {
-                   //Actualizar el estado del mecánico a true.
-                     mecanico.setEstado(true);
+                    //Actualizar el estado del mecánico a true.
+                    mecanico.setEstado(true);
 
                     //Escribir la lista actualizada de mecánicos en el archivo binario.
-                     actualizarBinario("mecanicos.dat", mecanicos);
+                    MecanicosCRUD.Update(mecanico);
                           
-                     usuarioAutenticado = true;
+                    usuarioAutenticado = true;
     
-                break;
+                    break;
                 }
                 
             }
@@ -205,7 +203,7 @@ public class LoginNuevo extends javax.swing.JPanel {
                 if (frame != null) {
                     frame.dispose();
                 }
-                RegistroNuevo.imprimirContenidoBinario("mecanicos.dat");
+                
             } else {
                 //Si los datos son incorrectas, imprimir un mensaje de error en la consola
                 System.out.println("Usuario o contraseña incorrectos.");
@@ -215,23 +213,7 @@ public class LoginNuevo extends javax.swing.JPanel {
             System.out.println("Error: " + e.getMessage());
         }
     }//GEN-LAST:event_IniciarMouseClicked
-    public static void actualizarBinario(String ruta, ArrayList<Mecanico> mecanicos) {
-        try {
-            //Se crea un FileOutputStream para escribir en el archivo binario en la ruta especificada
-            FileOutputStream f = new FileOutputStream(ruta);
-            ObjectOutputStream file = new ObjectOutputStream(f);
 
-            //Se escribe la lista de mecánicos en el archivo
-            file.writeObject(mecanicos.toArray(new Mecanico[0]));
-
-            //Se cierra el archivo después de la escritura
-            file.close();
-        } catch (IOException ex) {
-            //Manejo de excepciones: Imprime el error en la consola en caso de fallo en la escritura
-            System.out.println(ex);
-        }
-    }
-    
     private boolean esNombreValido(String nombre) {
         //Se itera sobre cada carácter en el nombre utilizando un bucle for-each.
         for (char c : nombre.toCharArray()) {

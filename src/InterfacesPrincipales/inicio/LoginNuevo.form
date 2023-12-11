@@ -92,7 +92,7 @@
                       <Component id="jLabel4" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                       <Component id="Contraseña" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="115" max="32767" attributes="0"/>
+                  <EmptySpace pref="109" max="32767" attributes="0"/>
                   <Component id="Iniciar" min="-2" pref="50" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
