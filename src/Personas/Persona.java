@@ -4,16 +4,24 @@
  */
 package Personas;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Mondongo
  */
-public abstract class Persona {
+public abstract class Persona implements Serializable {
 
     private int id;
     private String nombre;
     private boolean estado;
 
+    public Persona() {
+        this.id = 0;
+        this.nombre = "";
+        this.estado = true;
+    }
+    
     public Persona(int id, String nombre) {
         this.id = id;
         this.nombre = nombre;

@@ -94,6 +94,7 @@ public class MecanicosCRUD {
         for (Mecanico mecanico : mecanicos) {
             if (mecanico.getId() == id) {
                 //Marcar el Mecanico como inactivo
+                mecanico.setEstado(false);
                 encontrado = true;
                 Update(mecanico);
                 break;
