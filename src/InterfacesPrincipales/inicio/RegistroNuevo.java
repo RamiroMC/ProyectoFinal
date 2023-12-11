@@ -1,11 +1,12 @@
+package InterfacesPrincipales.inicio;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package InterfacesLogin;
 
 
-import ClasesApp.Mecanico;
+import Personas.Mecanico;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -203,7 +204,7 @@ public class RegistroNuevo extends javax.swing.JPanel {
             }
 
             //Crear un objeto Mecanico
-            Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, 0,false);
+            Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, 0);
 
             //Guardar el Mecanico en el archivo binario
             escribirBinario("mecanicos.dat", mecanico);

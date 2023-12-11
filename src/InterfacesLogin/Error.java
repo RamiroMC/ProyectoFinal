@@ -4,6 +4,8 @@
  */
 package InterfacesLogin;
 
+import InterfacesPrincipales.inicio.LoginNuevo;
+
 /**
  *
  * @author MADE

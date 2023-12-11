@@ -1,11 +1,13 @@
+package InterfacesPrincipales.inicio;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package InterfacesLogin;
 
-import InterfacesApp.Tablon;
-import ClasesApp.Mecanico;
+import InterfacesLogin.Error;
+import InterfacesPrincipales.Tablon;
+import Personas.Mecanico;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;

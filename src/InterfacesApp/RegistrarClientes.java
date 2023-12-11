@@ -8,11 +8,10 @@ package InterfacesApp;
  *
  * @author MADE
  */
-import ClasesApp.Automovil;
-import ClasesApp.Bicicleta;
-import ClasesApp.Cliente;
-import ClasesApp.Moto;
-import ClasesApp.Vehiculo;
+
+import Personas.Cliente;
+
+import ObjetosApp.Vehiculo;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -236,10 +235,10 @@ public class RegistrarClientes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Moto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Automovil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Bicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Moto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Bicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,7 +314,8 @@ public class RegistrarClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_BicicletaActionPerformed
 
     private void RegistrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarClienteMouseClicked
-       String nombreCliente = NombreCliente.getText();
+      
+        String nombreCliente = NombreCliente.getText();
         String idCliente = IdCliente.getText();
         String placaVehiculo = Placa.getText();
         String marcaVehiculo = Marca.getText();
@@ -328,8 +328,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
             throw new IllegalArgumentException("Todos los campos deben llenarse.");
         }
 
-            //Crear un objeto Cliente
-            Cliente cliente = new Cliente(Integer.parseInt(idCliente), nombreCliente);
+            
 
             //Determinar el tipo de vehículo seleccionado
             String tipoVehiculo = "";
@@ -345,20 +344,22 @@ public class RegistrarClientes extends javax.swing.JPanel {
             Vehiculo vehiculo = null;
             switch (tipoVehiculo) {
                 case "Automovil":
-                    vehiculo = new Automovil(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
+                    vehiculo = new Vehiculo(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
                     break;
                 case "Bicicleta":
-                    vehiculo = new Bicicleta(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
+                    vehiculo = new Vehiculo(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
                     break;
                 case "Moto":
-                    vehiculo = new Moto(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
+                    vehiculo = new Vehiculo(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
                     break;
                 default:
                     throw new IllegalArgumentException("Por favor, selecciona un tipo de vehículo.");
             }
 
-            //Asignar el vehículo al cliente
-            cliente.setVehiculo(vehiculo);
+            
+            //Crear un objeto Cliente
+            Cliente cliente = new Cliente(Integer.parseInt(idCliente), nombreCliente, vehiculo);
+           
 
             //Guardar el cliente en el archivo binario
             escribirBinarioClientes("clientes.dat", cliente);

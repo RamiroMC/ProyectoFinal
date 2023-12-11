@@ -2,10 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package InterfacesLogin;
+package InterfacesPrincipales;
+
+import InterfacesPrincipales.inicio.LoginNuevo;
+import InterfacesPrincipales.inicio.RegistroNuevo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+
+
 
 /**
  *
@@ -66,7 +71,6 @@ public class Login extends javax.swing.JFrame {
         contenedor2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1020, 540));
 
         contenedor1.setPreferredSize(new java.awt.Dimension(500, 500));
 
@@ -151,4 +155,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel contenedor1;
     private javax.swing.JPanel contenedor2;
     // End of variables declaration//GEN-END:variables
+
 }

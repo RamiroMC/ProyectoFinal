@@ -4,6 +4,8 @@
  */
 package InterfacesApp;
 
+import InterfacesApp.*;
+
 /**
  *
  * @author MADE
