@@ -331,7 +331,7 @@ public class Tablon extends javax.swing.JFrame {
     }//GEN-LAST:event_CerrarSesionMouseClicked
 
     private void EmpezarTrabajosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpezarTrabajosMouseClicked
-        IniciarTrabajo p = new  IniciarTrabajo();
+        Trabajos p = new  Trabajos();
         p.setSize(800, 700);
         Contenedor.removeAll();
         Contenedor.add(p);

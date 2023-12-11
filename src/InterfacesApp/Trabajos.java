@@ -8,12 +8,12 @@ package InterfacesApp;
  *
  * @author MADE
  */
-public class TablaClientes extends javax.swing.JPanel {
+public class Trabajos extends javax.swing.JPanel {
 
     /**
-     * Creates new form TablaClientes
+     * Creates new form Trabajos
      */
-    public TablaClientes() {
+    public Trabajos() {
         initComponents();
     }
 
@@ -31,15 +31,14 @@ public class TablaClientes extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldBuscarCliente = new javax.swing.JTextField();
-        Registro = new javax.swing.JLabel();
+        Empezar = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-
-        setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4 = new javax.swing.JLabel();
 
         ContenedorClientes.setBackground(new java.awt.Color(255, 255, 255));
         ContenedorClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -57,7 +56,7 @@ public class TablaClientes extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Buscar cliente:");
+        jLabel3.setText("Buscar trabajos (id):");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTextFieldBuscarCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
@@ -67,13 +66,13 @@ public class TablaClientes extends javax.swing.JPanel {
             }
         });
 
-        Registro.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        Registro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Registro.setText("REGISTRAR CLIENTE");
-        Registro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Registro.addMouseListener(new java.awt.event.MouseAdapter() {
+        Empezar.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        Empezar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Empezar.setText("REGISTRAR nuevo trabajo");
+        Empezar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Empezar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RegistroMouseClicked(evt);
+                EmpezarMouseClicked(evt);
             }
         });
 
@@ -98,7 +97,7 @@ public class TablaClientes extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Vehiculo");
+        jLabel8.setText("codigo de trabajo");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -134,6 +133,11 @@ public class TablaClientes extends javax.swing.JPanel {
                 .addGap(0, 379, Short.MAX_VALUE))
         );
 
+        jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("BUSCAR");
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout ContenedorClientesLayout = new javax.swing.GroupLayout(ContenedorClientes);
         ContenedorClientes.setLayout(ContenedorClientesLayout);
         ContenedorClientesLayout.setHorizontalGroup(
@@ -145,11 +149,13 @@ public class TablaClientes extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Registro, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addComponent(Empezar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jTextFieldBuscarCliente)
-                .addGap(34, 34, 34))
+                .addComponent(jTextFieldBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
         );
         ContenedorClientesLayout.setVerticalGroup(
@@ -160,11 +166,12 @@ public class TablaClientes extends javax.swing.JPanel {
                 .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldBuscarCliente))
+                    .addComponent(jTextFieldBuscarCliente)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(Registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Empezar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
         );
@@ -173,7 +180,7 @@ public class TablaClientes extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ContenedorClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(ContenedorClientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,8 +194,8 @@ public class TablaClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldBuscarClienteActionPerformed
 
-    private void RegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroMouseClicked
-        RegistrarClientes p = new RegistrarClientes();
+    private void EmpezarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpezarMouseClicked
+        IniciarTrabajo p = new IniciarTrabajo();
         p.setSize(800, 700);
         ContenedorClientes.removeAll();
         ContenedorClientes.add(p);
@@ -196,15 +203,16 @@ public class TablaClientes extends javax.swing.JPanel {
         ContenedorClientes.repaint();
         ContenedorClientes.setSize(800, 700);
         ContenedorClientes.setLocation(200, 0);
-    }//GEN-LAST:event_RegistroMouseClicked
+    }//GEN-LAST:event_EmpezarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ContenedorClientes;
-    private javax.swing.JLabel Registro;
+    private javax.swing.JLabel Empezar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
