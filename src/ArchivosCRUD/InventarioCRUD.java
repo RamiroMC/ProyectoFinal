@@ -6,7 +6,7 @@ package ArchivosCRUD;
 
 /**
  *
- * @author JOSE
+ * @author Dilan
  */
 public class InventarioCRUD {
     
