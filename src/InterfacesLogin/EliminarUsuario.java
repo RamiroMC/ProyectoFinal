@@ -125,14 +125,7 @@ public class EliminarUsuario extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegresarBotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegresarBotonMouseClicked
-        TablonInventario p = new TablonInventario();
-        p.setSize(800, 700);
-        ContenedorRegistroIn.removeAll();
-        ContenedorRegistroIn.add(p);
-        ContenedorRegistroIn.revalidate();
-        ContenedorRegistroIn.repaint();
-        ContenedorRegistroIn.setSize(800, 700);
-        ContenedorRegistroIn.setLocation(200, 0);
+        
     }//GEN-LAST:event_RegresarBotonMouseClicked
 
 
