@@ -51,7 +51,7 @@ public class Trabajos extends javax.swing.JPanel {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SECCION DE CLIENTES");
+        jLabel1.setText("SECCION DE TRABAJO");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N

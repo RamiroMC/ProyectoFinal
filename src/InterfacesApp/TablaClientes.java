@@ -39,6 +39,7 @@ public class TablaClientes extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         EliminarCliente = new javax.swing.JLabel();
+        BuscarCliente = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -145,6 +146,11 @@ public class TablaClientes extends javax.swing.JPanel {
             }
         });
 
+        BuscarCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        BuscarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BuscarCliente.setText("BUSCAR");
+        BuscarCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout ContenedorClientesLayout = new javax.swing.GroupLayout(ContenedorClientes);
         ContenedorClientes.setLayout(ContenedorClientesLayout);
         ContenedorClientesLayout.setHorizontalGroup(
@@ -161,11 +167,13 @@ public class TablaClientes extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContenedorClientesLayout.createSequentialGroup()
-                        .addComponent(jTextFieldBuscarCliente)
-                        .addGap(34, 34, 34))
-                    .addGroup(ContenedorClientesLayout.createSequentialGroup()
                         .addComponent(EliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(ContenedorClientesLayout.createSequentialGroup()
+                        .addComponent(jTextFieldBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
         );
         ContenedorClientesLayout.setVerticalGroup(
@@ -173,10 +181,11 @@ public class TablaClientes extends javax.swing.JPanel {
             .addGroup(ContenedorClientesLayout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldBuscarCliente))
+                    .addComponent(BuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldBuscarCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(ContenedorClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
@@ -221,6 +230,7 @@ public class TablaClientes extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BuscarCliente;
     private javax.swing.JPanel ContenedorClientes;
     private javax.swing.JLabel EliminarCliente;
     private javax.swing.JLabel Registro;

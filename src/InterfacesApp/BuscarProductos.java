@@ -10,12 +10,12 @@ import InterfacesApp.*;
  *
  * @author MADE
  */
-public class Buscar extends javax.swing.JPanel {
+public class BuscarProductos extends javax.swing.JPanel {
 
     /**
      * Creates new form Buscar
      */
-    public Buscar() {
+    public BuscarProductos() {
         initComponents();
     }
 
