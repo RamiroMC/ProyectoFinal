@@ -8,6 +8,10 @@ import Personas.Cliente;
 import java.util.ArrayList;
 
 /**
+ *
+ * @author Dilan
+ */
+/**
  * Clase que proporciona métodos para realizar operaciones CRUD en un archivo binario de clientes llamado "Clientes.dat".
  * Se encarga de la gestión de clientes, permitiendo agregar, leer, actualizar y eliminar información de clientes.
  */
