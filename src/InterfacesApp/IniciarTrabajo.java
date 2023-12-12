@@ -121,6 +121,7 @@ public class IniciarTrabajo extends javax.swing.JPanel {
         catorceJBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         catorceJBL.setText("14 dias");
         catorceJBL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        catorceJBL.setOpaque(true);
 
         veinteJBL.setBackground(new java.awt.Color(102, 255, 102));
         veinteJBL.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
@@ -352,6 +353,8 @@ public class IniciarTrabajo extends javax.swing.JPanel {
                     cliente.setOficios(aux);
 
                     ClientesCRUD.Update(cliente);
+                    
+                    System.out.println( ofAUX.toString()); 
 
                 }
 

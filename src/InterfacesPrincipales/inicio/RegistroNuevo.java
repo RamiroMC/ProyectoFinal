@@ -4,9 +4,12 @@ package InterfacesPrincipales.inicio;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
+import ArchivosCRUD.ClientesCRUD;
 import ArchivosCRUD.MecanicosCRUD;
+import Personas.Cliente;
 import Personas.Mecanico;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,7 +44,7 @@ public class RegistroNuevo extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         RegistrarseBTN = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        ContraseñaTXT = new javax.swing.JTextField();
+        ContraseñaTXT = new javax.swing.JPasswordField();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -114,51 +117,74 @@ public class RegistroNuevo extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("contraseña:");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 124, 55));
-
-        ContraseñaTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        ContraseñaTXT.setName("Contraseña"); // NOI18N
-        ContraseñaTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContraseñaTXTActionPerformed(evt);
-            }
-        });
-        add(ContraseñaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 322, 55));
+        add(ContraseñaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 320, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarseBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarseBTNMouseClicked
         //Obtener los datos de los campos de texto
         String nombreMecanico = userTXT.getText();
         String cedula = cedulaTXT.getText();
-        String contraseñaMecanico = ContraseñaTXT.getText();
 
-        try {
-            //Validar que el nombre y la contraseña no estén vacíos
-            if (nombreMecanico.isEmpty() || contraseñaMecanico.isEmpty() || cedula.isEmpty()) {
-                throw new IllegalArgumentException("Ambos campos deben llenarse.");
-            }
+        char[] txt = ContraseñaTXT.getPassword();
+        String contraseñaMecanico = new String(txt);
+
+        //Validar que el nombre y la contraseña no estén vacíos
+        if (nombreMecanico.isEmpty() || contraseñaMecanico.isEmpty() || cedula.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "deben llenarse todos los campos", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+        } else {
 
             //Validar que el nombre solo contenga letras
             if (!esNombreValido(nombreMecanico)) {
-                throw new IllegalArgumentException("El nombre debe contener solo letras.");
-            }
+                JOptionPane.showMessageDialog(null, "nombre debe contener solo letras", "Alerta", JOptionPane.WARNING_MESSAGE);
 
-            //Validar que no haya mecánicos con el mismo nombre y contraseña
-            ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
-            for (Mecanico existente : mecanicos) {
-                if (existente.getId().equals(cedula)) {
-                    throw new IllegalArgumentException("Ya existe un mecánico registrado con esta cedula.");
+            } else {
+
+                boolean existe = false;
+
+                //Validar que no haya mecánicos con el mismo nombre y contraseña
+                ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
+
+                ArrayList<Cliente> clientes = ClientesCRUD.Read();
+
+                for (Cliente cliente : clientes) {
+
+                    if (cliente.getId().equals(cedula)) {
+
+                        existe = true;
+
+                    }
+
+                }
+
+                for (Mecanico existente : mecanicos) {
+                    if (existente.getId().equals(cedula)) {
+                        existe = true;
+                    }
+                }
+
+                if (existe) {
+
+                    JOptionPane.showMessageDialog(null, "esta identificacion de cliente ya existe", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+                } else {
+                    //Crear un objeto Mecanico
+                    Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, cedula);
+
+                    //Guardar el Mecanico en el archivo binario
+                    MecanicosCRUD.Create(mecanico);
+
+                    JOptionPane.showMessageDialog(null, "el mecanico " + nombreMecanico + " con numero de identificacion: " + cedula + " se registro correctamente", "Alerta", JOptionPane.WARNING_MESSAGE);
+
                 }
             }
 
-            //Crear un objeto Mecanico
-            Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, cedula);
+            userTXT.setText("");
+            cedulaTXT.setText("");
+            ContraseñaTXT.setText("");
 
-            //Guardar el Mecanico en el archivo binario
-            MecanicosCRUD.Create(mecanico);
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
         }
+
 
     }//GEN-LAST:event_RegistrarseBTNMouseClicked
 
@@ -169,10 +195,6 @@ public class RegistroNuevo extends javax.swing.JPanel {
     private void cedulaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaTXTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cedulaTXTActionPerformed
-
-    private void ContraseñaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ContraseñaTXTActionPerformed
 
     public boolean esNombreValido(String nombre) {
         //Se itera sobre cada carácter en el nombre utilizando un bucle for-each.
@@ -190,7 +212,7 @@ public class RegistroNuevo extends javax.swing.JPanel {
     //Metodo auxiliar para verificar que se estan guardando lo datos en el archivo.
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ContraseñaTXT;
+    private javax.swing.JPasswordField ContraseñaTXT;
     private javax.swing.JLabel RegistrarseBTN;
     private javax.swing.JLabel ceduJB;
     private javax.swing.JTextField cedulaTXT;

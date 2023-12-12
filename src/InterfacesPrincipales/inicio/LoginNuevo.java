@@ -4,7 +4,6 @@ package InterfacesPrincipales.inicio;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
 import ArchivosCRUD.MecanicosCRUD;
 import InterfacesLogin.Error;
 import InterfacesPrincipales.Tablon;
@@ -12,15 +11,16 @@ import Personas.Mecanico;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import java.util.ArrayList;
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author MADE
  */
 public class LoginNuevo extends javax.swing.JPanel {
-    
+
     String idMecanico;
+
     /**
      * Creates new form LoginNuevo
      */
@@ -43,8 +43,8 @@ public class LoginNuevo extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         cedulaTXT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        ContraseñaTXT = new javax.swing.JTextField();
         Iniciar = new javax.swing.JLabel();
+        ContraseñaTXT = new javax.swing.JPasswordField();
 
         Contenedor.setBackground(new java.awt.Color(255, 255, 255));
         Contenedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -78,13 +78,6 @@ public class LoginNuevo extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Contraseña:");
-
-        ContraseñaTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        ContraseñaTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContraseñaTXTActionPerformed(evt);
-            }
-        });
 
         Iniciar.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         Iniciar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -134,9 +127,9 @@ public class LoginNuevo extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cedulaTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ContraseñaTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                    .addComponent(ContraseñaTXT))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(Iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -161,14 +154,15 @@ public class LoginNuevo extends javax.swing.JPanel {
     private void IniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarMouseClicked
         //Obtener los datos de los campos de texto
         String cedula = cedulaTXT.getText();
-        String contraseñaUsuario = ContraseñaTXT.getText();
 
-        try {
-            //Validar que el nombre y la contraseña no estén vacíos.
-            if (cedula.isEmpty() || contraseñaUsuario.isEmpty()) {
-                throw new IllegalArgumentException("Ambos campos deben llenarse.");
-            }
+        char[] txt = ContraseñaTXT.getPassword();
+        String contraseñaUsuario = new String(txt);
 
+        //Validar que el nombre y la contraseña no estén vacíos.
+        if (cedula.isEmpty() || contraseñaUsuario.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "debe llenar los campos", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+        } else {
 
             //Validar datos en el archivo binario.
             ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
@@ -177,51 +171,51 @@ public class LoginNuevo extends javax.swing.JPanel {
             //Iterar sobre la lista de mecánicos para verificar los datos.
             for (Mecanico mecanico : mecanicos) {
                 if (mecanico.getId().equals(cedula) && mecanico.getContraseña().equals(contraseñaUsuario)) {
-                   
+
                     //Se guarda el id del mecanico.
                     idMecanico = mecanico.getId();
-                    
+
                     usuarioAutenticado = true;
-    
+
                     break;
                 }
-                
+
             }
 
             //Verificar el resultado de la autenticación del usuario
             if (usuarioAutenticado) {
-               //Si los datos son correctas, mostrar el siguiente tablón y cerrar la ventana actual
- 
-               //Asignar el ID del mecánico al Tablon
-               Tablon tablon = new Tablon();
-               tablon.setIdMecanico(idMecanico);
+                //Si los datos son correctas, mostrar el siguiente tablón y cerrar la ventana actual
 
-               //Cerrar la ventana actual
-               this.setVisible(false);
+                //Asignar el ID del mecánico al Tablon
+                Tablon tablon = new Tablon();
+                tablon.setIdMecanico(idMecanico);
 
-               //Mostrar el nuevo tablón
-               tablon.setVisible(true);
+                //Cerrar la ventana actual
+                this.setVisible(false);
 
-               JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-               if (frame != null) {
-                   frame.dispose();
-               }
-                
+                //Mostrar el nuevo tablón
+                tablon.setVisible(true);
+
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                if (frame != null) {
+                    frame.dispose();
+                }
+
             } else {
                 //Si los datos son incorrectas, imprimir un mensaje de error en la consola
-                System.out.println("Usuario o contraseña incorrectos.");
+                JOptionPane.showMessageDialog(null, "usuario o contraseña incorrectos", "Alerta", JOptionPane.WARNING_MESSAGE);
+
             }
-        } catch (IllegalArgumentException e) {
-            //Capturar y manejar excepciones de argumento ilegal, imprimir el mensaje de error en la consola
-            System.out.println("Error: " + e.getMessage());
+
+            cedulaTXT.setText("");
+
+            ContraseñaTXT.setText("");
+
         }
+
+
     }//GEN-LAST:event_IniciarMouseClicked
 
-    
-    
-    private void ContraseñaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaTXTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ContraseñaTXTActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         Error p = new Error();
@@ -237,7 +231,7 @@ public class LoginNuevo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Contenedor;
-    private javax.swing.JTextField ContraseñaTXT;
+    private javax.swing.JPasswordField ContraseñaTXT;
     private javax.swing.JLabel Iniciar;
     private javax.swing.JTextField cedulaTXT;
     private javax.swing.JLabel jLabel1;

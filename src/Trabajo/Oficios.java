@@ -15,15 +15,15 @@ public class Oficios extends Trabajo {
     private String tipoTrabajo; //MECANICA O LATONERIA O REVISION
 
     //Constructor
-    public Oficios(String idTrabajo,
-            String tipoTrabajo, LocalDate fechaInicio, int plazoMaximo, String idCliente, String mecanico,
-             String detalles) {
+    public Oficios(String idTrabajo, String tipoTrabajo, LocalDate fechaInicio, int plazoMaximo, String idCliente, String mecanico,
+            String detalles) {
 
-        super(idTrabajo, fechaInicio,plazoMaximo, idCliente, mecanico, detalles);
+        super(idTrabajo, fechaInicio, plazoMaximo, idCliente, mecanico, detalles);
+        
+        this.tipoTrabajo = tipoTrabajo;
 
     }
 
-    
     //Implementación del método abstracto cotizarPrecio para Oficios
     @Override
     public double cotizarPrecio() {

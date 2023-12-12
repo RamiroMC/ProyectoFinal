@@ -5,8 +5,10 @@
 package InterfacesApp;
 
 import ArchivosCRUD.ClientesCRUD;
+import ArchivosCRUD.MecanicosCRUD;
 import ObjetosApp.Vehiculo;
 import Personas.Cliente;
+import Personas.Mecanico;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -219,10 +221,21 @@ public class RegistrarClientes extends javax.swing.JPanel {
             boolean existe = false;
 
             ArrayList<Cliente> clientes = ClientesCRUD.Read();
+            ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
 
             for (Cliente cliente : clientes) {
 
                 if (cliente.getId().equals(idCliente)) {
+
+                    existe = true;
+
+                }
+
+            }
+            
+            for (Mecanico mecanico : mecanicos) {
+
+                if (mecanico.getId().equals(idCliente)) {
 
                     existe = true;
 

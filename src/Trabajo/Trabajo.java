@@ -38,9 +38,7 @@ public abstract class Trabajo implements Serializable {
     private String detalles;
 
     //Constructor
-    public Trabajo(String idTrabajo,
-            LocalDate fechaInicio,  int plazoMaximo,
-            String idCliente, String mecanico, String detalles) {
+    public Trabajo(String idTrabajo, LocalDate fechaInicio, int plazoMaximo, String idCliente, String mecanico, String detalles) {
 
         this.idTrabajo = idTrabajo;
 
@@ -49,7 +47,7 @@ public abstract class Trabajo implements Serializable {
         this.estadoTrabajo = true;
 
         this.fechaInicio = fechaInicio;
-     
+
         this.plazoMaximo = plazoMaximo;
 
         this.idCliente = idCliente;
@@ -80,8 +78,6 @@ public abstract class Trabajo implements Serializable {
     public void setDiasTrabajo(int diasTrabajo) {
         this.diasTrabajo = diasTrabajo;
     }
-
- 
 
     public double getPrecioMaterial() {
         return precioMaterial;
@@ -127,8 +123,6 @@ public abstract class Trabajo implements Serializable {
         this.fechaFinal = fechaFinal;
     }
 
-
-
     public int getPlazoMaximo() {
         return plazoMaximo;
     }
@@ -152,9 +146,6 @@ public abstract class Trabajo implements Serializable {
     public void setIdMecanico(String idMecanico) {
         this.idMecanico = idMecanico;
     }
-
-   
-
 
     public abstract double cotizarPrecio();
 

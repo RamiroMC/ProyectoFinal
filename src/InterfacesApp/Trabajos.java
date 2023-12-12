@@ -8,6 +8,7 @@ import ArchivosCRUD.ClientesCRUD;
 import Personas.Cliente;
 import Trabajo.Oficios;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class Trabajos extends javax.swing.JPanel {
 
     private String idMecanico;
-    
+
     public Trabajos() {
         initComponents();
     }
@@ -202,10 +203,11 @@ public class Trabajos extends javax.swing.JPanel {
         p.setSize(800, 700);
         Contenedor.removeAll();
         Contenedor.add(p);
+
+        Contenedor.setSize(800, 700);
+        Contenedor.setLocation(0, 0);
         Contenedor.revalidate();
         Contenedor.repaint();
-        Contenedor.setSize(800, 700);
-        Contenedor.setLocation(200, 0);
     }//GEN-LAST:event_EmpezarMouseClicked
 
     private void buscarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarBTNMouseClicked
@@ -214,28 +216,53 @@ public class Trabajos extends javax.swing.JPanel {
 
         ArrayList<Cliente> clientes = ClientesCRUD.Read();
 
+        boolean trabajoEXiste = false;
+        boolean mecanicoExiste = false;
+
+      
         for (Cliente cliente : clientes) {
 
             for (Oficios oficio : cliente.getOficios()) {
 
                 if (oficio.getIdTrabajo().equals(idTrabajoAUX)) {
+                    trabajoEXiste = true;
+                }
+
+                if (oficio.getIdMecanico().equals(idMecanico)) {
+                    mecanicoExiste = true;
+                }
+
+                if ((oficio.getIdTrabajo().equals(idTrabajoAUX) && oficio.getIdMecanico().equals(idMecanico))) {
 
                     Mecanica m = new Mecanica();
                     m.setIdTrabajoAUX(idTrabajoAUX);
                     m.setSize(800, 700);
                     Contenedor.removeAll();
                     Contenedor.add(m);
-                    Contenedor.revalidate();
-                    Contenedor.repaint();
+
                     Contenedor.setSize(800, 700);
                     Contenedor.setLocation(0, 0);
 
+                    Contenedor.revalidate();
+                    Contenedor.repaint();
+
                     break;
+
                 }
 
             }
 
         }
+
+        if (trabajoEXiste == false) {
+            JOptionPane.showMessageDialog(null, "id del trabajo no existe", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+        } else if (mecanicoExiste == false) {
+            JOptionPane.showMessageDialog(null, "el mecanico " + idMecanico + " no tiene permiso para modificar este trabajo", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+        }
+
+        buscarTrabajoTXT.setText("");
 
 
     }//GEN-LAST:event_buscarBTNMouseClicked
