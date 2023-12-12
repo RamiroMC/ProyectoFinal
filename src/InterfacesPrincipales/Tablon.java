@@ -312,7 +312,7 @@ public class Tablon extends javax.swing.JFrame {
     private void CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarSesionMouseClicked
         
         //
-        
+                                          
         
         //Cerrar la ventana actual
         this.dispose();

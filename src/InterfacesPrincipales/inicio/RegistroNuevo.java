@@ -15,7 +15,9 @@ import java.util.ArrayList;
  * @author MADE
  */
 public class RegistroNuevo extends javax.swing.JPanel {
-
+    
+   
+    
     /**
      * Creates new form RegistroNuevo
      */

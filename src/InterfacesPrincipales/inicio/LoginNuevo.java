@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author MADE
  */
 public class LoginNuevo extends javax.swing.JPanel {
-
+    int idMecanico;
     /**
      * Creates new form LoginNuevo
      */
@@ -182,7 +182,8 @@ public class LoginNuevo extends javax.swing.JPanel {
                 if (mecanico.getNombre().equals(nombreUsuario) && mecanico.getContraseña().equals(contraseñaUsuario)) {
                     //Actualizar el estado del mecánico a true.
                     mecanico.setEstado(true);
-
+                    //Se guarda el id del mecanico.
+                    idMecanico = mecanico.getId();
                     //Escribir la lista actualizada de mecánicos en el archivo binario.
                     MecanicosCRUD.Update(mecanico);
                           
@@ -195,14 +196,22 @@ public class LoginNuevo extends javax.swing.JPanel {
 
             //Verificar el resultado de la autenticación del usuario
             if (usuarioAutenticado) {
-                //Si los datos son correctas, mostrar el siguiente tablón y cerrar la ventana actual
-                Tablon tablon = new Tablon();
-                this.setVisible(false);
-                tablon.setVisible(true);
-                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-                if (frame != null) {
-                    frame.dispose();
-                }
+               //Si los datos son correctas, mostrar el siguiente tablón y cerrar la ventana actual
+ 
+               //Asignar el ID del mecánico al Tablon
+               Tablon tablon = new Tablon();
+               tablon.setIdMecanico(idMecanico);
+
+               //Cerrar la ventana actual
+               this.setVisible(false);
+
+               //Mostrar el nuevo tablón
+               tablon.setVisible(true);
+
+               JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+               if (frame != null) {
+                   frame.dispose();
+               }
                 
             } else {
                 //Si los datos son incorrectas, imprimir un mensaje de error en la consola
