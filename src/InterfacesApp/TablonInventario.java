@@ -643,7 +643,14 @@ public class TablonInventario extends javax.swing.JPanel {
     }//GEN-LAST:event_EliminarProductoMouseClicked
 
     private void RegistarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistarProductoMouseClicked
-        // TODO add your handling code here:
+        RegistrarProducto p = new  RegistrarProducto();
+        p.setSize(800, 700);
+        ContenedorInventario.removeAll();
+        ContenedorInventario.add(p);
+        ContenedorInventario.revalidate();
+        ContenedorInventario.repaint();
+        ContenedorInventario.setSize(800, 700);
+        ContenedorInventario.setLocation(200, 0);
     }//GEN-LAST:event_RegistarProductoMouseClicked
 
 

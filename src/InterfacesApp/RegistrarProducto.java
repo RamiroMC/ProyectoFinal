@@ -32,12 +32,12 @@ public class RegistrarProducto extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         RegistrarProducto = new javax.swing.JLabel();
-        PrecioTXT = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        CantidadTXT = new javax.swing.JLabel();
-        NombreTXT1 = new javax.swing.JLabel();
+        PrecioTXT = new javax.swing.JTextField();
+        CantidadTXT = new javax.swing.JTextField();
+        NombeTXT = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -80,16 +80,6 @@ public class RegistrarProducto extends javax.swing.JPanel {
         });
         ContenedorRegistroIn.add(RegistrarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 600, 250, 60));
 
-        PrecioTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        PrecioTXT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PrecioTXT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PrecioTXT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PrecioTXTMouseClicked(evt);
-            }
-        });
-        ContenedorRegistroIn.add(PrecioTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, 369, 60));
-
         jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("CANTIDAD:");
@@ -105,26 +95,9 @@ public class RegistrarProducto extends javax.swing.JPanel {
         jLabel7.setText("NOMBRE DEL PRODUCTO:");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ContenedorRegistroIn.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 430, 199, 60));
-
-        CantidadTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        CantidadTXT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CantidadTXT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        CantidadTXT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CantidadTXTMouseClicked(evt);
-            }
-        });
-        ContenedorRegistroIn.add(CantidadTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, 369, 60));
-
-        NombreTXT1.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        NombreTXT1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        NombreTXT1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        NombreTXT1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                NombreTXT1MouseClicked(evt);
-            }
-        });
-        ContenedorRegistroIn.add(NombreTXT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 369, 60));
+        ContenedorRegistroIn.add(PrecioTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, 400, 60));
+        ContenedorRegistroIn.add(CantidadTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 360, 400, 60));
+        ContenedorRegistroIn.add(NombeTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 400, 60));
 
         add(ContenedorRegistroIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -140,24 +113,12 @@ public class RegistrarProducto extends javax.swing.JPanel {
         ContenedorRegistroIn.setLocation(200, 0);
     }//GEN-LAST:event_RegistrarProductoMouseClicked
 
-    private void PrecioTXTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PrecioTXTMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PrecioTXTMouseClicked
-
-    private void CantidadTXTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CantidadTXTMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CantidadTXTMouseClicked
-
-    private void NombreTXT1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NombreTXT1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreTXT1MouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel CantidadTXT;
+    private javax.swing.JTextField CantidadTXT;
     private javax.swing.JPanel ContenedorRegistroIn;
-    private javax.swing.JLabel NombreTXT1;
-    private javax.swing.JLabel PrecioTXT;
+    private javax.swing.JTextField NombeTXT;
+    private javax.swing.JTextField PrecioTXT;
     private javax.swing.JLabel RegistrarProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
