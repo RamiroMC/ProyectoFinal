@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author JOSE
+ * @author Mondongo
  */
 public class Inventario implements Serializable {
 
