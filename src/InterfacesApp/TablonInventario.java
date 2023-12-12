@@ -4,14 +4,23 @@
  */
 package InterfacesApp;
 
+import ArchivosCRUD.ClientesCRUD;
+import ArchivosCRUD.InventarioCRUD;
+import ObjetosApp.Inventario;
+import Personas.Cliente;
+import Trabajo.Oficios;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author MADE
+ * @author JOSE
  */
 public class TablonInventario extends javax.swing.JPanel {
 
     /**
-     * Creates new form TabloMateriales
+     * Creates new form TablonInventario
      */
     public TablonInventario() {
         initComponents();
@@ -27,44 +36,73 @@ public class TablonInventario extends javax.swing.JPanel {
     private void initComponents() {
 
         ContenedorInventario = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        AgregarProducto = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        productoNameTXT = new javax.swing.JTextField();
+        Registro = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        BuscarProducto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        EliminarProducto = new javax.swing.JLabel();
-        RegistarProducto = new javax.swing.JLabel();
+        tablaPRODUCTOS = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        MostrarBTN = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(800, 700));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         ContenedorInventario.setBackground(new java.awt.Color(255, 255, 255));
         ContenedorInventario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         ContenedorInventario.setPreferredSize(new java.awt.Dimension(800, 700));
-        ContenedorInventario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ingreso.png"))); // NOI18N
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("INVENTARIO ");
+        jLabel1.setText("SECCION DE INVENTARIO");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ContenedorInventario.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 809, 80));
 
-        AgregarProducto.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        AgregarProducto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        AgregarProducto.setText("AGREGAR PRODUCTOS");
-        AgregarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        AgregarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AgregarProductoMouseClicked(evt);
+        jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Buscar producto:");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        productoNameTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        productoNameTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productoNameTXTActionPerformed(evt);
             }
         });
-        ContenedorInventario.add(AgregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 93, 180, 73));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setPreferredSize(new java.awt.Dimension(804, 440));
+        Registro.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        Registro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Registro.setText("REGISTRAR producto");
+        Registro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Registro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RegistroMouseClicked(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfacesApp/IMAGENES2/NUEVO.png"))); // NOI18N
+        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        BuscarProducto.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        BuscarProducto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BuscarProducto.setText("BUSCAR");
+        BuscarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BuscarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BuscarProductoMouseClicked(evt);
+            }
+        });
+
+        tablaPRODUCTOS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tablaPRODUCTOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -72,87 +110,104 @@ public class TablonInventario extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Nombre", "Cantidad", "Precio Unidad"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaPRODUCTOS);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfacesApp/IMAGENES2/NUEVO.png"))); // NOI18N
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        MostrarBTN.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        MostrarBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MostrarBTN.setText("MOSTRAR TODOS LOS productos");
+        MostrarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        MostrarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MostrarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MostrarBTNMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContenedorInventarioLayout = new javax.swing.GroupLayout(ContenedorInventario);
+        ContenedorInventario.setLayout(ContenedorInventarioLayout);
+        ContenedorInventarioLayout.setHorizontalGroup(
+            ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ContenedorInventarioLayout.createSequentialGroup()
+                .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContenedorInventarioLayout.createSequentialGroup()
+                        .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Registro, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ContenedorInventarioLayout.createSequentialGroup()
+                                .addComponent(productoNameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BuscarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
+                            .addGroup(ContenedorInventarioLayout.createSequentialGroup()
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(ContenedorInventarioLayout.createSequentialGroup()
+                        .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(ContenedorInventarioLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(MostrarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, ContenedorInventarioLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 755, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+        ContenedorInventarioLayout.setVerticalGroup(
+            ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContenedorInventarioLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BuscarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productoNameTXT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                        .addComponent(Registro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ContenedorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MostrarBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
-
-        ContenedorInventario.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 226, 809, 473));
-
-        EliminarProducto.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        EliminarProducto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        EliminarProducto.setText("ELIMINAR PRODUCTOS");
-        EliminarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        EliminarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EliminarProductoMouseClicked(evt);
-            }
-        });
-        EliminarProducto.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                EliminarProductoPropertyChange(evt);
-            }
-        });
-        ContenedorInventario.add(EliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(602, 93, 180, 73));
-
-        RegistarProducto.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        RegistarProducto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        RegistarProducto.setText("REGISTRAR PRODUCTOS");
-        RegistarProducto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        RegistarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RegistarProductoMouseClicked(evt);
-            }
-        });
-        ContenedorInventario.add(RegistarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(319, 93, 180, 73));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ContenedorInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(ContenedorInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(ContenedorInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(ContenedorInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AgregarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AgregarProductoMouseClicked
-        NuevoInventario p = new  NuevoInventario();
-        p.setSize(800, 700);
-        ContenedorInventario.removeAll();
-        ContenedorInventario.add(p);
-        ContenedorInventario.revalidate();
-        ContenedorInventario.repaint();
-        ContenedorInventario.setSize(800, 700);
-        ContenedorInventario.setLocation(200, 0);
-       
-    }//GEN-LAST:event_AgregarProductoMouseClicked
-
-    private void EliminarProductoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_EliminarProductoPropertyChange
+    private void productoNameTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productoNameTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EliminarProductoPropertyChange
+    }//GEN-LAST:event_productoNameTXTActionPerformed
 
-    private void EliminarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarProductoMouseClicked
-        EliminarInventario p = new  EliminarInventario();
+    private void RegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroMouseClicked
+        NuevoProducto p = new NuevoProducto();
         p.setSize(800, 700);
         ContenedorInventario.removeAll();
         ContenedorInventario.add(p);
@@ -160,28 +215,87 @@ public class TablonInventario extends javax.swing.JPanel {
         ContenedorInventario.repaint();
         ContenedorInventario.setSize(800, 700);
         ContenedorInventario.setLocation(200, 0);
-    }//GEN-LAST:event_EliminarProductoMouseClicked
+    }//GEN-LAST:event_RegistroMouseClicked
 
-    private void RegistarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistarProductoMouseClicked
-        RegistrarProducto p = new  RegistrarProducto();
-        p.setSize(800, 700);
-        ContenedorInventario.removeAll();
-        ContenedorInventario.add(p);
-        ContenedorInventario.revalidate();
-        ContenedorInventario.repaint();
-        ContenedorInventario.setSize(800, 700);
-        ContenedorInventario.setLocation(200, 0);
-    }//GEN-LAST:event_RegistarProductoMouseClicked
+    private void BuscarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarProductoMouseClicked
+
+        String idProductoAUX = productoNameTXT.getText();
+
+        try {
+
+            int producto_id = Integer.parseInt(idProductoAUX);
+
+            ArrayList<Inventario> productos = InventarioCRUD.Read();
+
+            boolean existe = false;
+
+            for (Inventario producto : productos) {
+
+                if (producto.getId() == producto_id) {
+
+                    EditarProducto m = new EditarProducto();
+                    m.setId_producto(producto_id);
+                    m.setSize(800, 700);
+                    ContenedorInventario.removeAll();
+                    ContenedorInventario.add(m);
+                    ContenedorInventario.revalidate();
+                    ContenedorInventario.repaint();
+                    ContenedorInventario.setSize(800, 700);
+                    ContenedorInventario.setLocation(200, 0);
+                    existe = true;
+                    break;
+
+                }
+
+            }
+
+            if (existe == false) {
+                JOptionPane.showMessageDialog(null, "id del producto no existe", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "id del producto debe ser numerico", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+        }
+        productoNameTXT.setText("");
+
+    }//GEN-LAST:event_BuscarProductoMouseClicked
+
+    private void MostrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MostrarBTNMouseClicked
+        // Supongamos que tienes un ArrayList bidimensional
+        ArrayList<Inventario> datos = InventarioCRUD.Read();
+
+        // Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("Id");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio Unidad");
+
+        // Agregar las filas al modelo
+        for (Inventario fila : datos) {
+
+            model.addRow(new Object[]{fila.getId(), fila.getNombre(), fila.getCantidad(), fila.getPrecio()});
+        }
+
+        tablaPRODUCTOS.setModel(model);
+    }//GEN-LAST:event_MostrarBTNMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel AgregarProducto;
+    private javax.swing.JLabel BuscarProducto;
     private javax.swing.JPanel ContenedorInventario;
-    private javax.swing.JLabel EliminarProducto;
-    private javax.swing.JLabel RegistarProducto;
+    private javax.swing.JLabel MostrarBTN;
+    private javax.swing.JLabel Registro;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField productoNameTXT;
+    private javax.swing.JTable tablaPRODUCTOS;
     // End of variables declaration//GEN-END:variables
 }

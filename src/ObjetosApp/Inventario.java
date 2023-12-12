@@ -17,6 +17,13 @@ public class Inventario implements Serializable {
     private int cantidad;
     private float precio;
 
+    public Inventario(String nombre, int cantidad, float precio, int id) {
+        this.id = id;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -33,6 +40,7 @@ public class Inventario implements Serializable {
         this.id = id;
     }
 
+ 
     public int getCantidad() {
         return cantidad;
     }
@@ -48,8 +56,5 @@ public class Inventario implements Serializable {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-    
-    
-    
 
 }

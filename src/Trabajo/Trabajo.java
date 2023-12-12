@@ -4,10 +4,8 @@
  */
 package Trabajo;
 
-import Personas.Mecanico;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Clase que representa un trabajo realizado por un mecánico para un cliente.

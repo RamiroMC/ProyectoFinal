@@ -28,7 +28,7 @@ public class Oficios extends Trabajo {
     @Override
     public double cotizarPrecio() {
 
-        return 0.0;  // Solo un ejemplo, debes ajustar según tus necesidades
+        return 1500;  // Solo un ejemplo, debes ajustar según tus necesidades
     }
 
     public String getTipoTrabajo() {

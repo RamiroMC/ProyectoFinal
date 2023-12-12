@@ -9,6 +9,7 @@ import Personas.Cliente;
 import Trabajo.Oficios;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -48,13 +49,18 @@ public class Trabajos extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         buscarBTN = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaTRABAJOS = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        mostrarBTN = new javax.swing.JLabel();
 
         Contenedor.setBackground(new java.awt.Color(255, 255, 255));
         Contenedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Contenedor.setPreferredSize(new java.awt.Dimension(800, 700));
+        Contenedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ContenedorMouseClicked(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ingreso.png"))); // NOI18N
@@ -104,28 +110,34 @@ public class Trabajos extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTRABAJOS.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tablaTRABAJOS.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id Trabajo", "Id Cliente", "Id Mecanico", "Fecha Inicio", "Plazo", "Costo"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaTRABAJOS);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfacesApp/IMAGENES2/NUEVO.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel10.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("MOSTRAR TODOS LOS TRABAJOS");
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mostrarBTN.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        mostrarBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mostrarBTN.setText("MOSTRAR TODOS LOS TRABAJOS");
+        mostrarBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        mostrarBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        mostrarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mostrarBTNMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ContenedorLayout = new javax.swing.GroupLayout(Contenedor);
         Contenedor.setLayout(ContenedorLayout);
@@ -155,7 +167,7 @@ public class Trabajos extends javax.swing.JPanel {
                             .addGroup(ContenedorLayout.createSequentialGroup()
                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(mostrarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(19, 19, 19))
         );
         ContenedorLayout.setVerticalGroup(
@@ -173,7 +185,7 @@ public class Trabajos extends javax.swing.JPanel {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
                     .addComponent(Empezar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(mostrarBTN, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
@@ -219,7 +231,6 @@ public class Trabajos extends javax.swing.JPanel {
         boolean trabajoEXiste = false;
         boolean mecanicoExiste = false;
 
-      
         for (Cliente cliente : clientes) {
 
             for (Oficios oficio : cliente.getOficios()) {
@@ -267,6 +278,41 @@ public class Trabajos extends javax.swing.JPanel {
 
     }//GEN-LAST:event_buscarBTNMouseClicked
 
+    private void mostrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarBTNMouseClicked
+        // Supongamos que tienes un ArrayList bidimensional
+        ArrayList<Cliente> datos = ClientesCRUD.Read();
+
+        // Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("Id Trabajo");
+        model.addColumn("Id Cliente");
+        model.addColumn("Id Mecanico");
+        model.addColumn("Fecha inicio");
+        model.addColumn("Plazo maximo");
+        model.addColumn("Costo");
+
+        // Agregar las filas al modelo
+        for (Cliente fila : datos) {
+
+            ArrayList<Oficios> trabajos = fila.getOficios();
+
+            for (Oficios deuda : trabajos) {
+
+                model.addRow(new Object[]{deuda.getIdTrabajo(), deuda.getIdCliente(), deuda.getIdMecanico(),
+                    deuda.getFechaInicio().toString(), deuda.getPlazoMaximo(), deuda.cotizarPrecio()});
+
+            }
+
+        }
+
+        tablaTRABAJOS.setModel(model);
+    }//GEN-LAST:event_mostrarBTNMouseClicked
+
+    private void ContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContenedorMouseClicked
+       this.requestFocus();
+    }//GEN-LAST:event_ContenedorMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Contenedor;
@@ -274,12 +320,12 @@ public class Trabajos extends javax.swing.JPanel {
     private javax.swing.JLabel buscarBTN;
     private javax.swing.JTextField buscarTrabajoTXT;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel mostrarBTN;
+    private javax.swing.JTable tablaTRABAJOS;
     // End of variables declaration//GEN-END:variables
 }
