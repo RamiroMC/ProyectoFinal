@@ -6,6 +6,7 @@ package Trabajo;
 
 import Personas.Mecanico;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -16,42 +17,44 @@ import java.util.Date;
  */
 public abstract class Trabajo implements Serializable {
 
-    private int idTrabajo; //LEER EN ARCHIVO
+    private String idTrabajo; //LEER EN ARCHIVO
 
-    private int horasTrabajo;
+    private int diasTrabajo;
 
     private double precioMaterial;
 
     private boolean estadoTrabajo;
 
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
-    private Date fechaFinal;
+    private LocalDate fechaFinal;
 
     private int plazoMaximo;
 
-    private int idCliente;
-    
-    private Mecanico mecanico;
+    private String idCliente;
+
+    private String idMecanico;
 
     private String detalles;
 
     //Constructor
-    public Trabajo(int idTrabajo, int horasTrabajo, double precioMaterial, boolean estadoTrabajo,
-            Date fechaInicio, Date fechaFinal, int plazoMaximo,
-            int idCliente, Mecanico mecanico, String detalles) {
+    public Trabajo(String idTrabajo,
+            LocalDate fechaInicio,  int plazoMaximo,
+            String idCliente, String mecanico, String detalles) {
 
-        this.horasTrabajo = horasTrabajo;
-        this.precioMaterial = precioMaterial;
-        this.estadoTrabajo = estadoTrabajo;
+        this.idTrabajo = idTrabajo;
+
+        this.diasTrabajo = 0;
+        this.precioMaterial = 0;
+        this.estadoTrabajo = true;
 
         this.fechaInicio = fechaInicio;
-        this.fechaFinal = fechaFinal;
+     
         this.plazoMaximo = plazoMaximo;
 
         this.idCliente = idCliente;
-        
-        this.mecanico = mecanico;
+
+        this.idMecanico = mecanico;
 
         this.detalles = detalles;
 
@@ -62,22 +65,23 @@ public abstract class Trabajo implements Serializable {
         return null;
     }
 
-    //Métodos getters y setters
-    public int getIdTrabajo() {
+    public String getIdTrabajo() {
         return idTrabajo;
     }
 
-    public void setIdTrabajo(int idTrabajo) {
+    public void setIdTrabajo(String idTrabajo) {
         this.idTrabajo = idTrabajo;
     }
 
-    public int getHorasTrabajo() {
-        return horasTrabajo;
+    public int getDiasTrabajo() {
+        return diasTrabajo;
     }
 
-    public void setHorasTrabajo(int horasTrabajo) {
-        this.horasTrabajo = horasTrabajo;
+    public void setDiasTrabajo(int diasTrabajo) {
+        this.diasTrabajo = diasTrabajo;
     }
+
+ 
 
     public double getPrecioMaterial() {
         return precioMaterial;
@@ -107,21 +111,23 @@ public abstract class Trabajo implements Serializable {
         this.detalles = detalles;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFinal() {
+    public LocalDate getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaFinal(Date fechaFinal) {
+    public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
+
+
 
     public int getPlazoMaximo() {
         return plazoMaximo;
@@ -131,23 +137,24 @@ public abstract class Trabajo implements Serializable {
         this.plazoMaximo = plazoMaximo;
     }
 
-    public int getIdCliente() {
+    public String getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public String getIdMecanico() {
+        return idMecanico;
+    }
+
+    public void setIdMecanico(String idMecanico) {
+        this.idMecanico = idMecanico;
     }
 
    
 
-    public Mecanico getMecanico() {
-        return mecanico;
-    }
-
-    public void setMecanico(Mecanico mecanico) {
-        this.mecanico = mecanico;
-    }
 
     public abstract double cotizarPrecio();
 

@@ -87,12 +87,12 @@ public class MecanicosCRUD {
      * Elimina un mecánico del archivo.
      * @param id El ID del mecánico que se eliminará.
      */
-    public static void Delete(int id) {
+    public static void Delete(String id) {
         ArrayList<Mecanico> mecanicos = Read();
         boolean encontrado = false;
 
         for (Mecanico mecanico : mecanicos) {
-            if (mecanico.getId() == id) {
+            if (mecanico.getId().equals(id)) {
                 //Marcar el Mecanico como inactivo
                 mecanico.setEstado(false);
                 encontrado = true;

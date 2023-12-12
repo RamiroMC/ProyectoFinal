@@ -5,7 +5,7 @@
 package Personas;
 
 import ObjetosApp.Vehiculo;
-import Trabajo.Trabajo;
+import Trabajo.Oficios;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -16,9 +16,9 @@ import java.util.ArrayList;
 public class Cliente extends Persona implements Serializable {
 
     private ArrayList<Vehiculo> vehiculos = new ArrayList<>();
-    private ArrayList<Trabajo> trabajos = new ArrayList<>();
+    private ArrayList<Oficios> oficios = new ArrayList<>();
 
-    public Cliente(int id, String nombre, Vehiculo vehiculo) {
+    public Cliente(String id, String nombre, Vehiculo vehiculo) {
         super(id, nombre);
         this.vehiculos.add(vehiculo);
 
@@ -32,12 +32,14 @@ public class Cliente extends Persona implements Serializable {
         this.vehiculos = vehiculos;
     }
 
-    public ArrayList<Trabajo> getTrabajos() {
-        return trabajos;
+    public ArrayList<Oficios> getOficios() {
+        return oficios;
     }
 
-    public void setTrabajos(ArrayList<Trabajo> trabajos) {
-        this.trabajos = trabajos;
+    public void setOficios(ArrayList<Oficios> oficios) {
+        this.oficios = oficios;
     }
+
+  
 
 }

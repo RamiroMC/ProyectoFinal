@@ -16,7 +16,7 @@ public class Mecanico extends Persona implements Serializable {
     private String contraseña;
 
     //Constructor
-    public Mecanico(String nombre, String contraseña, int id) {
+    public Mecanico(String nombre, String contraseña, String id) {
 
         super(id, nombre);
         this.contraseña = contraseña;

@@ -4,20 +4,16 @@
  */
 package InterfacesApp;
 
+import ArchivosCRUD.ClientesCRUD;
+import ObjetosApp.Vehiculo;
+import Personas.Cliente;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MADE
  */
-
-import Personas.Cliente;
-
-import ObjetosApp.Vehiculo;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Arrays;
 public class RegistrarClientes extends javax.swing.JPanel {
 
     /**
@@ -49,12 +45,9 @@ public class RegistrarClientes extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         Marca = new javax.swing.JTextField();
         RegistrarCliente = new javax.swing.JLabel();
-        Volver = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         IdCliente = new javax.swing.JTextField();
-        Moto = new javax.swing.JCheckBox();
-        Automovil = new javax.swing.JCheckBox();
-        Bicicleta = new javax.swing.JCheckBox();
+        tipoVehiculo = new javax.swing.JComboBox<>();
 
         RegistroPanel.setBackground(new java.awt.Color(255, 255, 255));
         RegistroPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -73,11 +66,6 @@ public class RegistrarClientes extends javax.swing.JPanel {
         jLabel3.setText("COLOR:");
 
         Color.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Color.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ColorActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -88,11 +76,6 @@ public class RegistrarClientes extends javax.swing.JPanel {
         jLabel5.setText("VEHICULO:");
 
         NombreCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        NombreCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreClienteActionPerformed(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,11 +88,6 @@ public class RegistrarClientes extends javax.swing.JPanel {
         jLabel7.setText("MARCA:");
 
         Marca.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Marca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MarcaActionPerformed(evt);
-            }
-        });
 
         RegistrarCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         RegistrarCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -121,56 +99,13 @@ public class RegistrarClientes extends javax.swing.JPanel {
             }
         });
 
-        Volver.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Volver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Volver.setText("volver");
-        Volver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Volver.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                VolverMouseClicked(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("NOMBRE:");
 
         IdCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        IdCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IdClienteActionPerformed(evt);
-            }
-        });
 
-        Moto.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        Moto.setText("MOTO");
-        Moto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Moto.setBorderPainted(true);
-        Moto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MotoActionPerformed(evt);
-            }
-        });
-
-        Automovil.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        Automovil.setText("Automovil");
-        Automovil.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Automovil.setBorderPainted(true);
-        Automovil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AutomovilActionPerformed(evt);
-            }
-        });
-
-        Bicicleta.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        Bicicleta.setText("bicicleta");
-        Bicicleta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Bicicleta.setBorderPainted(true);
-        Bicicleta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BicicletaActionPerformed(evt);
-            }
-        });
+        tipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout RegistroPanelLayout = new javax.swing.GroupLayout(RegistroPanel);
         RegistroPanel.setLayout(RegistroPanelLayout);
@@ -184,7 +119,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(289, 289, 289))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistroPanelLayout.createSequentialGroup()
-                        .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(RegistroPanelLayout.createSequentialGroup()
                                 .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,20 +138,14 @@ public class RegistrarClientes extends javax.swing.JPanel {
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Color, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(RegistroPanelLayout.createSequentialGroup()
-                                        .addComponent(Moto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Automovil, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(76, 76, 76)
-                                        .addComponent(Bicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(RegistroPanelLayout.createSequentialGroup()
-                                .addComponent(RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(49, 49, 49))))
+                                    .addComponent(Color, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                                    .addComponent(Marca, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                                    .addComponent(Placa, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                                    .addComponent(tipoVehiculo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistroPanelLayout.createSequentialGroup()
+                        .addComponent(RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(268, 268, 268))))
         );
         RegistroPanelLayout.setVerticalGroup(
             RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,28 +163,26 @@ public class RegistrarClientes extends javax.swing.JPanel {
                     .addComponent(IdCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Moto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Automovil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Bicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(tipoVehiculo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(Marca))
-                .addGap(18, 18, 18)
+                .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegistroPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistroPanelLayout.createSequentialGroup()
+                        .addComponent(Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Color, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(RegistroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RegistrarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -274,177 +201,69 @@ public class RegistrarClientes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreClienteActionPerformed
-
-    private void VolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VolverMouseClicked
-        TablaClientes p = new TablaClientes();
-        p.setSize(800, 700);
-        RegistroPanel.removeAll();
-        RegistroPanel.add(p);
-        RegistroPanel.revalidate();
-        RegistroPanel.repaint();
-        RegistroPanel.setSize(800, 700);
-        RegistroPanel.setLocation(200, 0);
-    }//GEN-LAST:event_VolverMouseClicked
-
-    private void MarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MarcaActionPerformed
-
-    private void ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ColorActionPerformed
-
-    private void IdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IdClienteActionPerformed
-
-    private void MotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MotoActionPerformed
-        
-    }//GEN-LAST:event_MotoActionPerformed
-
-    private void AutomovilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutomovilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AutomovilActionPerformed
-
-    private void BicicletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BicicletaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BicicletaActionPerformed
-
     private void RegistrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarClienteMouseClicked
-      
+
         String nombreCliente = NombreCliente.getText();
         String idCliente = IdCliente.getText();
         String placaVehiculo = Placa.getText();
         String marcaVehiculo = Marca.getText();
         String colorVehiculo = Color.getText();
+        String vehiculoTipo = tipoVehiculo.getSelectedItem().toString();
 
-    try {
-        //Validaciones
-        if (nombreCliente.isEmpty() || idCliente.isEmpty() || placaVehiculo.isEmpty()
-                || marcaVehiculo.isEmpty() || colorVehiculo.isEmpty()) {
-            throw new IllegalArgumentException("Todos los campos deben llenarse.");
-        }
+        if (nombreCliente.isEmpty() || idCliente.isEmpty() || placaVehiculo.isEmpty() || marcaVehiculo.isEmpty()
+                || colorVehiculo.isEmpty() || vehiculoTipo.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
 
-            
+        } else {
 
-            //Determinar el tipo de vehículo seleccionado
-            String tipoVehiculo = "";
-            if (Automovil.isSelected()) {
-                tipoVehiculo = "Automovil";
-            } else if (Bicicleta.isSelected()) {
-                tipoVehiculo = "Bicicleta";
-            } else if (Moto.isSelected()) {
-                tipoVehiculo = "Moto";
+            boolean existe = false;
+
+            ArrayList<Cliente> clientes = ClientesCRUD.Read();
+
+            for (Cliente cliente : clientes) {
+
+                if (cliente.getId().equals(idCliente)) {
+
+                    existe = true;
+
+                }
+
             }
 
-            //Crear un objeto Vehiculo del tipo correspondiente
-            Vehiculo vehiculo = null;
-            switch (tipoVehiculo) {
-                case "Automovil":
-                    vehiculo = new Vehiculo(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
-                    break;
-                case "Bicicleta":
-                    vehiculo = new Vehiculo(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
-                    break;
-                case "Moto":
-                    vehiculo = new Vehiculo(placaVehiculo, marcaVehiculo, colorVehiculo, tipoVehiculo);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Por favor, selecciona un tipo de vehículo.");
+            if (existe) {
+
+                JOptionPane.showMessageDialog(null, "esta identificacion de cliente ya existe", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+
+                Vehiculo vAux = new Vehiculo(placaVehiculo, marcaVehiculo, colorVehiculo, vehiculoTipo);
+
+                Cliente cAux = new Cliente(idCliente, nombreCliente, vAux);
+
+                ClientesCRUD.Create(cAux);
+
             }
 
-            
-            //Crear un objeto Cliente
-            Cliente cliente = new Cliente(Integer.parseInt(idCliente), nombreCliente, vehiculo);
-           
+            NombreCliente.setText("");
+            IdCliente.setText("");
+            Placa.setText("");
+            Marca.setText("");
+            Color.setText("");
 
-            //Guardar el cliente en el archivo binario
-            escribirBinarioClientes("clientes.dat", cliente);
-
-            //Imprimir el contenido del archivo binario en la consola
-            imprimirContenidoBinarioClientes("clientes.dat");
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("Error: " + e.getMessage());
         }
-    
+
+
     }//GEN-LAST:event_RegistrarClienteMouseClicked
 
-    private void escribirBinarioClientes(String ruta, Cliente cliente) {
-    try {
-        // Leer todos los objetos existentes en el archivo binario
-        Cliente[] clientes = leerBinarioClientes(ruta);
-
-        // Verificar si clientes es nulo y asignar un array vacío si es el caso
-        if (clientes == null) {
-            clientes = new Cliente[0];
-        }
-
-        // Agregar el nuevo Cliente al array existente
-        clientes = Arrays.copyOf(clientes, clientes.length + 1);
-        clientes[clientes.length - 1] = cliente;
-
-        // Crear un FileOutputStream para escribir en el archivo binario en la ruta especificada
-        try (ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream(ruta))) {
-            file.writeObject(clientes);
-        }
-
-    } catch (IOException ex) {
-        System.out.println(ex);
-    }
-}
-
-    
-    private static Cliente[] leerBinarioClientes(String ruta) {
-        try {
-            //Crear un ObjectInputStream para leer el archivo binario en la ruta especificada
-            try (ObjectInputStream file = new ObjectInputStream(new FileInputStream(ruta))) {
-                //Leer el objeto del archivo
-                Object obj = file.readObject();
-
-                //Verificar si el objeto leído es un array de Cliente
-                if (obj instanceof Cliente[] clientes) {
-                    return clientes;
-                } else {
-                    System.out.println("El archivo no contiene un array de objetos Cliente.");
-                }
-            }
-        } catch (ClassNotFoundException | IOException ex) {
-            System.out.println(ex);
-        }
-
-        //En caso de error o archivo vacío, devolver null
-        return null;
-    }
-    
-    //Método auxiliar para verificar que se están guardando los datos en el archivo de clientes
-    public static void imprimirContenidoBinarioClientes(String ruta) {
-        Cliente[] clientes = leerBinarioClientes(ruta);
-
-        if (clientes != null) {
-            for (Cliente cliente : clientes) {
-                System.out.println(cliente);
-            }
-        } else {
-            System.out.println("No hay datos en el archivo de clientes.");
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox Automovil;
-    private javax.swing.JCheckBox Bicicleta;
     private javax.swing.JTextField Color;
     private javax.swing.JTextField IdCliente;
     private javax.swing.JTextField Marca;
-    private javax.swing.JCheckBox Moto;
     private javax.swing.JTextField NombreCliente;
     private javax.swing.JTextField Placa;
     private javax.swing.JLabel RegistrarCliente;
     private javax.swing.JPanel RegistroPanel;
-    private javax.swing.JLabel Volver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -453,5 +272,6 @@ public class RegistrarClientes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox<String> tipoVehiculo;
     // End of variables declaration//GEN-END:variables
 }

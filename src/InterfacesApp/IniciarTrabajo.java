@@ -4,17 +4,40 @@
  */
 package InterfacesApp;
 
+import ArchivosCRUD.ClientesCRUD;
+import ObjetosApp.Vehiculo;
+import Personas.Cliente;
+import Trabajo.Oficios;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MADE
  */
 public class IniciarTrabajo extends javax.swing.JPanel {
 
-    /**
-     * Creates new form IniciarTrabajo
-     */
+     private String idMecanico;
+    private LocalDate fecha;
+    private String codigoUnicoAUX;
+
     public IniciarTrabajo() {
         initComponents();
+
+        fecha = LocalDate.now();
+
+        fechaProgramaJBL.setText(fecha + "");
+
+    }
+
+    public String getIdMecanico() {
+        return idMecanico;
+    }
+
+    public void setIdMecanico(String idMecanico) {
+        this.idMecanico = idMecanico;
     }
 
     /**
@@ -26,27 +49,30 @@ public class IniciarTrabajo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tipoTrabajo = new javax.swing.ButtonGroup();
         ContenedorClientes = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        IdCliente = new javax.swing.JTextField();
+        idClienteTXT = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        catorceJBL = new javax.swing.JLabel();
+        veinteJBL = new javax.swing.JLabel();
+        sieteJBL = new javax.swing.JLabel();
         IniciarTrabajo = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Detalles = new javax.swing.JTextArea();
-        ReparacionMecanica = new javax.swing.JCheckBox();
-        Revision = new javax.swing.JCheckBox();
-        ReparacionLatoneria = new javax.swing.JCheckBox();
         jLabel16 = new javax.swing.JLabel();
-        FechaInicio = new javax.swing.JTextField();
         IdTrabajo = new javax.swing.JLabel();
+        repMecanica = new javax.swing.JRadioButton();
+        repLatoneria = new javax.swing.JRadioButton();
+        revision = new javax.swing.JRadioButton();
+        fechaProgramaJBL = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        vehiculosDisponibles = new javax.swing.JComboBox<>();
 
         ContenedorClientes.setBackground(new java.awt.Color(255, 255, 255));
         ContenedorClientes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -67,7 +93,12 @@ public class IniciarTrabajo extends javax.swing.JPanel {
         jLabel4.setText("IDENTIFICACION DEL CLIENTE (ID):");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        IdCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        idClienteTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        idClienteTXT.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                idClienteTXTFocusLost(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -84,25 +115,32 @@ public class IniciarTrabajo extends javax.swing.JPanel {
         jLabel10.setText("plazo de tiempo:");
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel11.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("14 dias");
-        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        catorceJBL.setBackground(new java.awt.Color(102, 255, 102));
+        catorceJBL.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        catorceJBL.setForeground(new java.awt.Color(0, 0, 0));
+        catorceJBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        catorceJBL.setText("14 dias");
+        catorceJBL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel12.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("21 dias");
-        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        veinteJBL.setBackground(new java.awt.Color(102, 255, 102));
+        veinteJBL.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        veinteJBL.setForeground(new java.awt.Color(0, 0, 0));
+        veinteJBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        veinteJBL.setText("21 dias");
+        veinteJBL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel13.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("7 dias");
-        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        sieteJBL.setBackground(new java.awt.Color(102, 255, 102));
+        sieteJBL.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        sieteJBL.setForeground(new java.awt.Color(0, 0, 0));
+        sieteJBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        sieteJBL.setText("7 dias");
+        sieteJBL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         IniciarTrabajo.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         IniciarTrabajo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         IniciarTrabajo.setText("EMPEZAR TRABAJO");
         IniciarTrabajo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        IniciarTrabajo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         IniciarTrabajo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 IniciarTrabajoMouseClicked(evt);
@@ -119,27 +157,48 @@ public class IniciarTrabajo extends javax.swing.JPanel {
         Detalles.setRows(5);
         jScrollPane1.setViewportView(Detalles);
 
-        ReparacionMecanica.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        ReparacionMecanica.setText("REPARACION MECANICA");
-        ReparacionMecanica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ReparacionMecanica.setBorderPainted(true);
-
-        Revision.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        Revision.setText("REVISION");
-        Revision.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Revision.setBorderPainted(true);
-
-        ReparacionLatoneria.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        ReparacionLatoneria.setText("reparacion latoneria");
-        ReparacionLatoneria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ReparacionLatoneria.setBorderPainted(true);
-
         jLabel16.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("fecha de inicio");
         jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         IdTrabajo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        tipoTrabajo.add(repMecanica);
+        repMecanica.setSelected(true);
+        repMecanica.setText("REPARACION MECANICA");
+        repMecanica.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                repMecanicaMouseClicked(evt);
+            }
+        });
+
+        tipoTrabajo.add(repLatoneria);
+        repLatoneria.setText("REPARACION LATONERIA");
+        repLatoneria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                repLatoneriaMouseClicked(evt);
+            }
+        });
+
+        tipoTrabajo.add(revision);
+        revision.setText("REVISION");
+        revision.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                revisionMouseClicked(evt);
+            }
+        });
+
+        fechaProgramaJBL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        fechaProgramaJBL.setForeground(new java.awt.Color(0, 0, 0));
+        fechaProgramaJBL.setText("dd/mm/yyyy");
+
+        jLabel11.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("vehiculo:");
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        vehiculosDisponibles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -158,26 +217,28 @@ public class IniciarTrabajo extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(IdCliente)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fechaProgramaJBL, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vehiculosDisponibles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(FechaInicio, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ReparacionMecanica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(repMecanica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(catorceJBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(IdTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Revision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                                    .addComponent(veinteJBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(repLatoneria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ReparacionLatoneria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                                    .addComponent(sieteJBL, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                    .addComponent(revision, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(idClienteTXT))))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,32 +246,36 @@ public class IniciarTrabajo extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(IdCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(idClienteTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                     .addComponent(IdTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(Revision, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(ReparacionMecanica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ReparacionLatoneria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(repMecanica)
+                    .addComponent(repLatoneria)
+                    .addComponent(revision))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(vehiculosDisponibles))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(catorceJBL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(veinteJBL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sieteJBL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(FechaInicio))
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fechaProgramaJBL, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(IniciarTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
         );
@@ -245,25 +310,154 @@ public class IniciarTrabajo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void IniciarTrabajoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarTrabajoMouseClicked
-        // TODO add your handling code here:
+
+        String idCliente = idClienteTXT.getText();
+
+        String tipoTrabajo = "";
+
+        String detalles = Detalles.getText();
+
+        int plazo = 0;
+
+        if (repMecanica.isSelected()) {
+            tipoTrabajo = "REPARACION MECANICA";
+            plazo = 14;
+        } else if (repLatoneria.isSelected()) {
+            tipoTrabajo = "REPARACION LATONERIA";
+            plazo = 21;
+        } else if (revision.isSelected()) {
+            tipoTrabajo = "REVISION";
+            plazo = 7;
+        }
+
+        if (idCliente.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+
+            ArrayList<Cliente> clientes = ClientesCRUD.Read();
+
+            ArrayList<Oficios> aux;
+
+            for (Cliente cliente : clientes) {
+
+                if (cliente.getId().equals(idCliente)) {
+
+                    aux = cliente.getOficios();
+
+                    Oficios ofAUX = new Oficios(codigoUnicoAUX, tipoTrabajo, fecha, plazo, idCliente, idMecanico, detalles);
+
+                    aux.add(ofAUX);
+
+                    cliente.setOficios(aux);
+
+                    ClientesCRUD.Update(cliente);
+
+                }
+
+            }
+
+            idClienteTXT.setText("");
+            Detalles.setText("");
+
+        }
+
+
     }//GEN-LAST:event_IniciarTrabajoMouseClicked
+
+    private void repMecanicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_repMecanicaMouseClicked
+        sieteJBL.setOpaque(false);
+        catorceJBL.setOpaque(true);
+        veinteJBL.setOpaque(false);
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_repMecanicaMouseClicked
+
+    private void repLatoneriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_repLatoneriaMouseClicked
+        sieteJBL.setOpaque(false);
+        catorceJBL.setOpaque(false);
+        veinteJBL.setOpaque(true);
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_repLatoneriaMouseClicked
+
+    private void revisionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_revisionMouseClicked
+        sieteJBL.setOpaque(true);
+        catorceJBL.setOpaque(false);
+        veinteJBL.setOpaque(false);
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_revisionMouseClicked
+
+    private void idClienteTXTFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_idClienteTXTFocusLost
+
+        String idAux = idClienteTXT.getText();
+
+        int contOficios = 0;
+
+        boolean existe = false;
+
+        if (!idAux.isEmpty()) {
+
+            ArrayList<Cliente> clientes = ClientesCRUD.Read();
+
+            for (Cliente cliente : clientes) {
+
+                if (cliente.getId().equals(idAux)) {
+
+                    contOficios = cliente.getOficios().size();
+
+                    codigoUnicoAUX = idAux + "-" + (contOficios + 1);
+
+                    IdTrabajo.setText(codigoUnicoAUX);
+
+                    existe = true;
+
+                    ArrayList<Vehiculo> vAux = cliente.getVehiculos();
+
+                    ArrayList<String> tiposVAux = new ArrayList<>();
+
+                    for (Vehiculo veh : vAux) {
+
+                        tiposVAux.add(veh.getTipoVehiculo());
+
+                    }
+
+                    // Crear un DefaultComboBoxModel y agregar los elementos del ArrayList
+                    DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(tiposVAux.toArray(new String[0]));
+                    vehiculosDisponibles.setModel(model);
+
+                }
+
+            }
+
+            if (existe == false) {
+
+                JOptionPane.showMessageDialog(null, "el id de cliente no existe", "Alerta", JOptionPane.WARNING_MESSAGE);
+                idClienteTXT.setText("");
+                IdTrabajo.setText("");
+            }
+
+        } else {
+            idClienteTXT.setText("");
+            IdTrabajo.setText("");
+        }
+
+
+    }//GEN-LAST:event_idClienteTXTFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ContenedorClientes;
     private javax.swing.JTextArea Detalles;
-    private javax.swing.JTextField FechaInicio;
-    private javax.swing.JTextField IdCliente;
     private javax.swing.JLabel IdTrabajo;
     private javax.swing.JLabel IniciarTrabajo;
-    private javax.swing.JCheckBox ReparacionLatoneria;
-    private javax.swing.JCheckBox ReparacionMecanica;
-    private javax.swing.JCheckBox Revision;
+    private javax.swing.JLabel catorceJBL;
+    private javax.swing.JLabel fechaProgramaJBL;
+    private javax.swing.JTextField idClienteTXT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel4;
@@ -271,5 +465,12 @@ public class IniciarTrabajo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton repLatoneria;
+    private javax.swing.JRadioButton repMecanica;
+    private javax.swing.JRadioButton revision;
+    private javax.swing.JLabel sieteJBL;
+    private javax.swing.ButtonGroup tipoTrabajo;
+    private javax.swing.JComboBox<String> vehiculosDisponibles;
+    private javax.swing.JLabel veinteJBL;
     // End of variables declaration//GEN-END:variables
 }

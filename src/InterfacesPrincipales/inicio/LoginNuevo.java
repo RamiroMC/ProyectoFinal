@@ -19,7 +19,8 @@ import java.util.ArrayList;
  * @author MADE
  */
 public class LoginNuevo extends javax.swing.JPanel {
-    int idMecanico;
+    
+    String idMecanico;
     /**
      * Creates new form LoginNuevo
      */
@@ -40,9 +41,9 @@ public class LoginNuevo extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Nombre = new javax.swing.JTextField();
+        cedulaTXT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        Contraseña = new javax.swing.JTextField();
+        ContraseñaTXT = new javax.swing.JTextField();
         Iniciar = new javax.swing.JLabel();
 
         Contenedor.setBackground(new java.awt.Color(255, 255, 255));
@@ -64,13 +65,13 @@ public class LoginNuevo extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("USUARIO:");
+        jLabel3.setText("CEDULA:");
         jLabel3.setToolTipText("");
 
-        Nombre.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Nombre.addActionListener(new java.awt.event.ActionListener() {
+        cedulaTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        cedulaTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreActionPerformed(evt);
+                cedulaTXTActionPerformed(evt);
             }
         });
 
@@ -78,10 +79,10 @@ public class LoginNuevo extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Contraseña:");
 
-        Contraseña.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Contraseña.addActionListener(new java.awt.event.ActionListener() {
+        ContraseñaTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        ContraseñaTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContraseñaActionPerformed(evt);
+                ContraseñaTXTActionPerformed(evt);
             }
         });
 
@@ -112,11 +113,11 @@ public class LoginNuevo extends javax.swing.JPanel {
                             .addGroup(ContenedorLayout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ContraseñaTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ContenedorLayout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cedulaTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(ContenedorLayout.createSequentialGroup()
                         .addGap(148, 148, 148)
                         .addComponent(Iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -131,11 +132,11 @@ public class LoginNuevo extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
+                    .addComponent(cedulaTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ContraseñaTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addComponent(Iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -153,25 +154,21 @@ public class LoginNuevo extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
+    private void cedulaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_NombreActionPerformed
+    }//GEN-LAST:event_cedulaTXTActionPerformed
 
     private void IniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarMouseClicked
         //Obtener los datos de los campos de texto
-        String nombreUsuario = Nombre.getText();
-        String contraseñaUsuario = Contraseña.getText();
+        String cedula = cedulaTXT.getText();
+        String contraseñaUsuario = ContraseñaTXT.getText();
 
         try {
             //Validar que el nombre y la contraseña no estén vacíos.
-            if (nombreUsuario.isEmpty() || contraseñaUsuario.isEmpty()) {
+            if (cedula.isEmpty() || contraseñaUsuario.isEmpty()) {
                 throw new IllegalArgumentException("Ambos campos deben llenarse.");
             }
 
-            //Validar que el nombre solo contenga letras.
-            if (!esNombreValido(nombreUsuario)) {
-                throw new IllegalArgumentException("El nombre debe contener solo letras.");
-            }
 
             //Validar datos en el archivo binario.
             ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
@@ -179,14 +176,11 @@ public class LoginNuevo extends javax.swing.JPanel {
 
             //Iterar sobre la lista de mecánicos para verificar los datos.
             for (Mecanico mecanico : mecanicos) {
-                if (mecanico.getNombre().equals(nombreUsuario) && mecanico.getContraseña().equals(contraseñaUsuario)) {
-                    //Actualizar el estado del mecánico a true.
-                    mecanico.setEstado(true);
+                if (mecanico.getId().equals(cedula) && mecanico.getContraseña().equals(contraseñaUsuario)) {
+                   
                     //Se guarda el id del mecanico.
                     idMecanico = mecanico.getId();
-                    //Escribir la lista actualizada de mecánicos en el archivo binario.
-                    MecanicosCRUD.Update(mecanico);
-                          
+                    
                     usuarioAutenticado = true;
     
                     break;
@@ -223,23 +217,11 @@ public class LoginNuevo extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_IniciarMouseClicked
 
-    private boolean esNombreValido(String nombre) {
-        //Se itera sobre cada carácter en el nombre utilizando un bucle for-each.
-        for (char c : nombre.toCharArray()) {
-            //Se verifica si el carácter actual no es una letra.
-            if (!Character.isLetter(c)) {
-                //Si se encuentra un carácter que no es una letra, se devuelve false.
-                return false;
-            }
-        }
-        //Si todos los caracteres son letras, se devuelve true.
-        return true;
-    }
     
     
-    private void ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaActionPerformed
+    private void ContraseñaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ContraseñaActionPerformed
+    }//GEN-LAST:event_ContraseñaTXTActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         Error p = new Error();
@@ -255,9 +237,9 @@ public class LoginNuevo extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Contenedor;
-    private javax.swing.JTextField Contraseña;
+    private javax.swing.JTextField ContraseñaTXT;
     private javax.swing.JLabel Iniciar;
-    private javax.swing.JTextField Nombre;
+    private javax.swing.JTextField cedulaTXT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

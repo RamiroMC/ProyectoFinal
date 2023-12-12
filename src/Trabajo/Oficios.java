@@ -4,8 +4,7 @@
  */
 package Trabajo;
 
-import Personas.Mecanico;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -14,21 +13,15 @@ import java.util.Date;
 public class Oficios extends Trabajo {
 
     private String tipoTrabajo; //MECANICA O LATONERIA O REVISION
-  
 
     //Constructor
-    public Oficios(int idTrabajo, int horasTrabajo, double precioMaterial, boolean estadoTrabajo,
-            String tipoTrabajo, Date fechaInicio, Date fechaFinal, int plazoMaximo, int idCliente, Mecanico mecanico
-            ,String detalles) {
+    public Oficios(String idTrabajo,
+            String tipoTrabajo, LocalDate fechaInicio, int plazoMaximo, String idCliente, String mecanico,
+             String detalles) {
 
-        super(idTrabajo, horasTrabajo, precioMaterial, estadoTrabajo, fechaInicio, fechaFinal,
-                plazoMaximo, idCliente, mecanico, detalles);
+        super(idTrabajo, fechaInicio,plazoMaximo, idCliente, mecanico, detalles);
 
     }
-
-    public void reparacion() {
-
-    };
 
     
     //Implementación del método abstracto cotizarPrecio para Oficios
@@ -50,7 +43,7 @@ public class Oficios extends Trabajo {
     public String toString() {
         return "Trabajo{"
                 + "idTrabajo = " + this.getIdTrabajo()
-                + ", horasTrabajo = " + this.getHorasTrabajo()
+                + ", diasTrabajo = " + this.getDiasTrabajo()
                 + ", precioMaterial = " + this.getPrecioMaterial()
                 + ", estadoTrabajo = " + this.getEstadoTrabajo()
                 + ", tipoTrabajo = '" + this.getTipoTrabajo() + '\''
@@ -59,7 +52,7 @@ public class Oficios extends Trabajo {
                 + ", plazoMaximo = " + this.getPlazoMaximo()
                 + ", detalles = '" + this.getDetalles() + '\''
                 + ", cliente = " + this.getIdCliente()
-                + ", mecanico = " + this.getMecanico()
+                + ", mecanico = " + this.getIdMecanico()
                 + '}';
 
     }

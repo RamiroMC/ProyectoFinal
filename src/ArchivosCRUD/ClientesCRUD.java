@@ -76,7 +76,7 @@ public class ClientesCRUD {
         boolean encontrado = false;
 
         for (int i = 0; i < clientes.size(); i++) {
-            if (clientes.get(i).getId() == clienteActualizado.getId()) {
+            if (clientes.get(i).getId().equals(clienteActualizado.getId())) {
                 //Reemplazar el cliente existente con el cliente actualizado
                 clientes.set(i, clienteActualizado);
                 encontrado = true;
@@ -84,7 +84,7 @@ public class ClientesCRUD {
             }
         }
 
-        if (!encontrado) {
+        if (encontrado == false) {
             System.out.println("Cliente no encontrado. No se realizó la actualización.");
             return;
         }
@@ -104,13 +104,13 @@ public class ClientesCRUD {
      * Actualiza el estado de un cliente a inactivo en el archivo.
      * @param id El ID del cliente que se marcará como inactivo.
      */
-    public static void Delete(int id) {
+    public static void Delete(String id) {
         //Leer la lista actual de clientes del archivo
         ArrayList<Cliente> clientes = Read();
         boolean encontrado = false;
 
         for (Cliente cliente : clientes) {
-            if (cliente.getId() == id) {
+            if (cliente.getId().equals(id)) {
                 //Marcar el cliente como inactivo
                 cliente.setEstado(false);
                 encontrado = true;

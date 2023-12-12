@@ -4,8 +4,6 @@ package InterfacesPrincipales.inicio;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-
-
 import ArchivosCRUD.MecanicosCRUD;
 import Personas.Mecanico;
 import java.util.ArrayList;
@@ -15,9 +13,7 @@ import java.util.ArrayList;
  * @author MADE
  */
 public class RegistroNuevo extends javax.swing.JPanel {
-    
-   
-    
+
     /**
      * Creates new form RegistroNuevo
      */
@@ -34,157 +30,110 @@ public class RegistroNuevo extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        Contraseña = new javax.swing.JTextField();
-        Nombre = new javax.swing.JTextField();
+        titulo = new javax.swing.JLabel();
+        foto = new javax.swing.JLabel();
+        userJB = new javax.swing.JLabel();
+        ceduJB = new javax.swing.JLabel();
+        cedulaTXT = new javax.swing.JTextField();
+        userTXT = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        Registrarse = new javax.swing.JLabel();
+        RegistrarseBTN = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        ContraseñaTXT = new javax.swing.JTextField();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 700));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Registro Mecanico");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        titulo.setFont(new java.awt.Font("Showcard Gothic", 0, 18)); // NOI18N
+        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo.setText("Registro Mecanico");
+        titulo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 1, 499, 38));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registro-en-linea.png"))); // NOI18N
+        foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/registro-en-linea.png"))); // NOI18N
+        add(foto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 190, 136));
 
-        jLabel3.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("usuario:");
+        userJB.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        userJB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        userJB.setText("usuario:");
+        add(userJB, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 190, 100, 55));
 
-        jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("contraseña:");
+        ceduJB.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        ceduJB.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ceduJB.setText("cedula:");
+        add(ceduJB, new org.netbeans.lib.awtextra.AbsoluteConstraints(44, 260, 100, 55));
 
-        Contraseña.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Contraseña.setName("Contraseña"); // NOI18N
-        Contraseña.addActionListener(new java.awt.event.ActionListener() {
+        cedulaTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        cedulaTXT.setName("cedulaTXT"); // NOI18N
+        cedulaTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ContraseñaActionPerformed(evt);
+                cedulaTXTActionPerformed(evt);
             }
         });
+        add(cedulaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 320, 55));
 
-        Nombre.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Nombre.setName("Nombre"); // NOI18N
-        Nombre.addActionListener(new java.awt.event.ActionListener() {
+        userTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        userTXT.setName("userTXT"); // NOI18N
+        userTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NombreActionPerformed(evt);
+                userTXTActionPerformed(evt);
             }
         });
+        add(userTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 320, 55));
 
         jLabel4.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Aceptación de Términos y Condiciones  ");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 380, -1));
 
         jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Al registrarte como trabajador, confirmas que has leído y aceptado los ");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 450, -1));
 
         jLabel7.setFont(new java.awt.Font("Showcard Gothic", 0, 10)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("términos y condiciones de la empresa.");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, 250, -1));
 
-        Registrarse.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Registrarse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Registrarse.setText("Registrarse");
-        Registrarse.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Registrarse.addMouseListener(new java.awt.event.MouseAdapter() {
+        RegistrarseBTN.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        RegistrarseBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        RegistrarseBTN.setText("Registrarse");
+        RegistrarseBTN.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        RegistrarseBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                RegistrarseMouseClicked(evt);
+                RegistrarseBTNMouseClicked(evt);
             }
         });
+        add(RegistrarseBTN, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 190, 50));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Nombre))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(152, 152, 152))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(Registrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel8.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("contraseña:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 124, 55));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        ContraseñaTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        ContraseñaTXT.setName("Contraseña"); // NOI18N
+        ContraseñaTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ContraseñaTXTActionPerformed(evt);
+            }
+        });
+        add(ContraseñaTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 322, 55));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RegistrarseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarseMouseClicked
-       //Obtener los datos de los campos de texto
-            String nombreMecanico = Nombre.getText();
-            String contraseñaMecanico = Contraseña.getText();
+    private void RegistrarseBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarseBTNMouseClicked
+        //Obtener los datos de los campos de texto
+        String nombreMecanico = userTXT.getText();
+        String cedula = cedulaTXT.getText();
+        String contraseñaMecanico = ContraseñaTXT.getText();
 
         try {
             //Validar que el nombre y la contraseña no estén vacíos
-            if (nombreMecanico.isEmpty() || contraseñaMecanico.isEmpty()) {
+            if (nombreMecanico.isEmpty() || contraseñaMecanico.isEmpty() || cedula.isEmpty()) {
                 throw new IllegalArgumentException("Ambos campos deben llenarse.");
             }
 
@@ -196,32 +145,35 @@ public class RegistroNuevo extends javax.swing.JPanel {
             //Validar que no haya mecánicos con el mismo nombre y contraseña
             ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
             for (Mecanico existente : mecanicos) {
-                if (existente.getNombre().equals(nombreMecanico) && existente.getContraseña().equals(contraseñaMecanico)) {
-                    throw new IllegalArgumentException("Ya existe un mecánico con el mismo nombre y contraseña.");
+                if (existente.getId().equals(cedula)) {
+                    throw new IllegalArgumentException("Ya existe un mecánico registrado con esta cedula.");
                 }
             }
 
             //Crear un objeto Mecanico
-            Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, 0);
+            Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, cedula);
 
             //Guardar el Mecanico en el archivo binario
             MecanicosCRUD.Create(mecanico);
 
-   
         } catch (IllegalArgumentException e) {
             System.out.println("Error: " + e.getMessage());
         }
 
-    }//GEN-LAST:event_RegistrarseMouseClicked
-    
-    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreActionPerformed
+    }//GEN-LAST:event_RegistrarseBTNMouseClicked
 
-    private void ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaActionPerformed
+    private void userTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ContraseñaActionPerformed
-    
+    }//GEN-LAST:event_userTXTActionPerformed
+
+    private void cedulaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cedulaTXTActionPerformed
+
+    private void ContraseñaTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraseñaTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ContraseñaTXTActionPerformed
+
     public boolean esNombreValido(String nombre) {
         //Se itera sobre cada carácter en el nombre utilizando un bucle for-each.
         for (char c : nombre.toCharArray()) {
@@ -234,22 +186,21 @@ public class RegistroNuevo extends javax.swing.JPanel {
         //Si todos los caracteres son letras, se devuelve true.
         return true;
     }
-  
+
     //Metodo auxiliar para verificar que se estan guardando lo datos en el archivo.
-    
- 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Contraseña;
-    private javax.swing.JTextField Nombre;
-    private javax.swing.JLabel Registrarse;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField ContraseñaTXT;
+    private javax.swing.JLabel RegistrarseBTN;
+    private javax.swing.JLabel ceduJB;
+    private javax.swing.JTextField cedulaTXT;
+    private javax.swing.JLabel foto;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel titulo;
+    private javax.swing.JLabel userJB;
+    private javax.swing.JTextField userTXT;
     // End of variables declaration//GEN-END:variables
 }

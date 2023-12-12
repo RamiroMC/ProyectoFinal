@@ -5,7 +5,6 @@
 package InterfacesPrincipales;
 
 import InterfacesApp.Caja;
-import InterfacesApp.ConsultarTrabajos;
 import InterfacesApp.TablaClientes;
 import InterfacesApp.TablonInventario;
 import InterfacesApp.Trabajos;
@@ -16,21 +15,21 @@ import InterfacesApp.Trabajos;
  */
 public class Tablon extends javax.swing.JFrame {
 
-    private int idMecanico;
+    private String idMecanico;
 
     public Tablon() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-    public int getIdMecanico() {
+    public String getIdMecanico() {
         return idMecanico;
     }
 
-    public void setIdMecanico(int idMecanico) {
+    public void setIdMecanico(String idMecanico) {
         this.idMecanico = idMecanico;
     }
-    
+
     
 
     /**
@@ -52,9 +51,7 @@ public class Tablon extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        ConsultaT = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         CerrarSesion = new javax.swing.JLabel();
         Contenedor = new javax.swing.JPanel();
@@ -124,23 +121,9 @@ public class Tablon extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/clasificacion.png"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/InterfacesApp/IMAGENES2/consultar.png"))); // NOI18N
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cajero-automatico.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        ConsultaT.setFont(new java.awt.Font("Showcard Gothic", 0, 11)); // NOI18N
-        ConsultaT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ConsultaT.setText("CONSULTAR TRABAJOS");
-        ConsultaT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        ConsultaT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ConsultaTMouseClicked(evt);
-            }
-        });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar-sesion_1.png"))); // NOI18N
@@ -175,15 +158,13 @@ public class Tablon extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelBotonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(EmpezarTrabajos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(EmpezarTrabajos, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                             .addComponent(inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CajaBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ConsultaT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))))
+                            .addComponent(CajaBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -207,11 +188,7 @@ public class Tablon extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(CajaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ConsultaT, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(88, 88, 88)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
                     .addComponent(CerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -298,17 +275,6 @@ public class Tablon extends javax.swing.JFrame {
         Contenedor.setLocation(200, 0);
     }//GEN-LAST:event_CajaBotonMouseClicked
 
-    private void ConsultaTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConsultaTMouseClicked
-        ConsultarTrabajos p = new ConsultarTrabajos();
-        p.setSize(800, 700);
-        Contenedor.removeAll();
-        Contenedor.add(p);
-        Contenedor.revalidate();
-        Contenedor.repaint();
-        Contenedor.setSize(800, 700);
-        Contenedor.setLocation(200, 0);
-    }//GEN-LAST:event_ConsultaTMouseClicked
-
     private void CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarSesionMouseClicked
         
         //
@@ -325,6 +291,7 @@ public class Tablon extends javax.swing.JFrame {
 
     private void EmpezarTrabajosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmpezarTrabajosMouseClicked
         Trabajos p = new Trabajos();
+        p.setIdMecanico(idMecanico);
         p.setSize(800, 700);
         Contenedor.removeAll();
         Contenedor.add(p);
@@ -372,7 +339,6 @@ public class Tablon extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CajaBoton;
     private javax.swing.JLabel CerrarSesion;
-    private javax.swing.JLabel ConsultaT;
     private javax.swing.JPanel Contenedor;
     private javax.swing.JLabel EmpezarTrabajos;
     private javax.swing.JLabel inventario;
@@ -381,7 +347,6 @@ public class Tablon extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelBotonClientes;
     private javax.swing.JPanel jPanel1;
