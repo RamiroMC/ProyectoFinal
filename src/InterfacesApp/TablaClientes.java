@@ -8,6 +8,7 @@ import ArchivosCRUD.ClientesCRUD;
 import Personas.Cliente;
 import Trabajo.Oficios;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -236,12 +237,12 @@ public class TablaClientes extends javax.swing.JPanel {
 
         // Agregar las filas al modelo
         for (Cliente fila : datos) {
-            
+
             ArrayList<Oficios> deudas = fila.getOficios();
-            
+
             float deuda_total = 0;
-            
-            for(Oficios deuda : deudas){
+
+            for (Oficios deuda : deudas) {
                 deuda_total += deuda.cotizarPrecio();
             }
 
@@ -254,11 +255,44 @@ public class TablaClientes extends javax.swing.JPanel {
 
     private void BuscarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarClienteMouseClicked
         // TODO add your handling code here
-        
-        
-        
-        
-       
+
+        //Obtener el ID ingresado
+        String idCliente = BuscarClienteTXT.getText();
+
+        if (idCliente.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Digite una id", "Alerta", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            boolean encontrado = false;
+
+            ArrayList<Cliente> clientes = ClientesCRUD.Read();
+
+            for (Cliente cliente : clientes) {
+
+                if (cliente.getId().equals(idCliente)) {
+                    
+                    ModificarCliente p = new ModificarCliente();
+                    p.setIdCliente(idCliente);
+                    p.setSize(800, 700);
+                    ContenedorClientes.removeAll();
+                    ContenedorClientes.add(p);
+                    ContenedorClientes.revalidate();
+                    ContenedorClientes.repaint();
+                    ContenedorClientes.setSize(800, 700);
+                    ContenedorClientes.setLocation(200, 0);
+                    
+                    
+                    encontrado = true;
+                    break;
+                }
+
+            }
+
+            if (encontrado == false) {
+                JOptionPane.showMessageDialog(null, "Id del cliente no registrada", "Alerta", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+
     }//GEN-LAST:event_BuscarClienteMouseClicked
 
 

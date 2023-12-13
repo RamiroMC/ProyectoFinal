@@ -4,6 +4,10 @@
  */
 package InterfacesApp;
 
+import ArchivosCRUD.ClientesCRUD;
+import Personas.Cliente;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MADE
@@ -13,10 +17,24 @@ public class ModificarCliente extends javax.swing.JPanel {
     /**
      * Creates new form ModificarCliente
      */
+    
+    private String idCliente;
+    private Cliente clienteActual;
+   
     public ModificarCliente() {
         initComponents();
     }
 
+    public String getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(String idCliente) {
+        this.idCliente = idCliente;
+        cargarInformacionCliente();
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -124,9 +142,19 @@ public class ModificarCliente extends javax.swing.JPanel {
 
         BotonPlaca.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         BotonPlaca.setText("placa del vehiculo");
+        BotonPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonPlacaActionPerformed(evt);
+            }
+        });
 
         BotonTipo.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         BotonTipo.setText("tipo vehiculo");
+        BotonTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonTipoActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -173,7 +201,7 @@ public class ModificarCliente extends javax.swing.JPanel {
                     .addGroup(ContenedorRegistroInLayout.createSequentialGroup()
                         .addGap(246, 246, 246)
                         .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         ContenedorRegistroInLayout.setVerticalGroup(
             ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,16 +258,52 @@ public class ModificarCliente extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizarMouseClicked
-        TablonInventario p = new TablonInventario();
+    
+    
+    /*TablonInventario p = new TablonInventario();
         p.setSize(800, 700);
         ContenedorRegistroIn.removeAll();
         ContenedorRegistroIn.add(p);
         ContenedorRegistroIn.revalidate();
         ContenedorRegistroIn.repaint();
         ContenedorRegistroIn.setSize(800, 700);
-        ContenedorRegistroIn.setLocation(200, 0);
+        ContenedorRegistroIn.setLocation(200, 0);*/
+    
+        
+    
+    
+    private void ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizarMouseClicked
+        //Obtener el valor de CambioTXT
+        String Cambio = CambioTXT.getText();
+
+        //Validar si se ingresó un valor
+        if (Cambio.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un valor para la actualización.", "Alerta", JOptionPane.WARNING_MESSAGE);
+        } else {
+            //Actualizar la información del cliente según la opción seleccionada
+            //Verificar qué botón de modificación está seleccionado
+             if (BotonNombre.isSelected()) {
+                 //Actualizar el nombre del cliente con nuevoValor
+                 clienteActual.setNombre(Cambio);
+             } else if (BotonId.isSelected()) {
+                 //Actualizar la ID del cliente con nuevoValor
+                 clienteActual.setId(Cambio);
+             } else if (BotonPlaca.isSelected()) {
+                 //Actualizar la placa del vehículo con nuevoValor
+                 clienteActual.getVehiculos().get(0).setPlaca(Cambio);
+             } else if (BotonTipo.isSelected()) {
+                 //Actualizar el tipo de vehículo con nuevoValor
+                 clienteActual.getVehiculos().get(0).setTipoVehiculo(Cambio);
+             }
+
+             //Puedes agregar más lógica según las otras opciones que puedas tener
+
+             //Luego de actualizar la información, puedes guardar el cliente actualizado
+             ClientesCRUD.Update(clienteActual);
+
+             //Resto de tu lógica después de actualizar, por ejemplo, mostrar un mensaje de éxito, etc.
+             JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_ActualizarMouseClicked
 
     private void BotonIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIdActionPerformed
@@ -250,7 +314,35 @@ public class ModificarCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonNombreActionPerformed
 
+    private void BotonTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonTipoActionPerformed
 
+    private void BotonPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPlacaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonPlacaActionPerformed
+
+    
+     // Método para cargar la información del cliente actual
+    private void cargarInformacionCliente() {
+        // Obtener la lista de clientes desde el archivo
+        for (Cliente cliente : ClientesCRUD.Read()) {
+            if (cliente.getId().equals(idCliente)) {
+                // Asignar el cliente actual
+                clienteActual = cliente;
+                
+                // Mostrar la información en los JLabel correspondientes
+                Nombre.setText(cliente.getNombre());
+                Id.setText(cliente.getId());
+                Placa.setText(cliente.getVehiculos().get(0).getPlaca());
+                Tipo.setText(cliente.getVehiculos().get(0).getTipoVehiculo());
+
+                break;
+            }
+        }
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Actualizar;
     private javax.swing.JRadioButton BotonId;
