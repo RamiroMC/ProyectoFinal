@@ -4,18 +4,15 @@
  */
 package InterfacesApp;
 
-import ArchivosCRUD.ClientesCRUD;
 import ArchivosCRUD.InventarioCRUD;
 import ObjetosApp.Inventario;
-import Personas.Cliente;
-import Trabajo.Oficios;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author JOSE
+ * @author Mondongo
  */
 public class TablonInventario extends javax.swing.JPanel {
 

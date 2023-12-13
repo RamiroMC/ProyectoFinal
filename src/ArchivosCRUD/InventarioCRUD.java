@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Dilan
+ * @author Mondongo
  */
 public class InventarioCRUD {
     

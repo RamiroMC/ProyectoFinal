@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author JOSE
+ * @author Mondongo
  */
 public class EditarProducto extends javax.swing.JPanel {
 
