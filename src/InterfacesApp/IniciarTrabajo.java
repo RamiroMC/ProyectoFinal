@@ -117,7 +117,6 @@ public class IniciarTrabajo extends javax.swing.JPanel {
 
         catorceJBL.setBackground(new java.awt.Color(102, 255, 102));
         catorceJBL.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        catorceJBL.setForeground(new java.awt.Color(0, 0, 0));
         catorceJBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         catorceJBL.setText("14 dias");
         catorceJBL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -125,14 +124,12 @@ public class IniciarTrabajo extends javax.swing.JPanel {
 
         veinteJBL.setBackground(new java.awt.Color(102, 255, 102));
         veinteJBL.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        veinteJBL.setForeground(new java.awt.Color(0, 0, 0));
         veinteJBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         veinteJBL.setText("21 dias");
         veinteJBL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         sieteJBL.setBackground(new java.awt.Color(102, 255, 102));
         sieteJBL.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        sieteJBL.setForeground(new java.awt.Color(0, 0, 0));
         sieteJBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         sieteJBL.setText("7 dias");
         sieteJBL.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -181,6 +178,11 @@ public class IniciarTrabajo extends javax.swing.JPanel {
                 repLatoneriaMouseClicked(evt);
             }
         });
+        repLatoneria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                repLatoneriaActionPerformed(evt);
+            }
+        });
 
         tipoTrabajo.add(revision);
         revision.setText("REVISION");
@@ -191,7 +193,6 @@ public class IniciarTrabajo extends javax.swing.JPanel {
         });
 
         fechaProgramaJBL.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        fechaProgramaJBL.setForeground(new java.awt.Color(0, 0, 0));
         fechaProgramaJBL.setText("dd/mm/yyyy");
 
         jLabel11.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
@@ -448,6 +449,10 @@ public class IniciarTrabajo extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_idClienteTXTFocusLost
+
+    private void repLatoneriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repLatoneriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_repLatoneriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
