@@ -44,20 +44,18 @@ public class ModificarCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Opciones = new javax.swing.ButtonGroup();
         ContenedorRegistroIn = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Actualizar = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         Nombre = new javax.swing.JLabel();
-        Id = new javax.swing.JLabel();
         Placa = new javax.swing.JLabel();
         Tipo = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         BotonNombre = new javax.swing.JRadioButton();
-        BotonId = new javax.swing.JRadioButton();
         BotonPlaca = new javax.swing.JRadioButton();
         BotonTipo = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
@@ -88,11 +86,6 @@ public class ModificarCliente extends javax.swing.JPanel {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("ID DEL CLIENTE:");
-        jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         jLabel6.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("PLACA DEL VEHICULO:");
@@ -107,10 +100,6 @@ public class ModificarCliente extends javax.swing.JPanel {
         Nombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        Id.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        Id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Id.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         Placa.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         Placa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Placa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -124,6 +113,7 @@ public class ModificarCliente extends javax.swing.JPanel {
         jLabel8.setText("modificacion:");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        Opciones.add(BotonNombre);
         BotonNombre.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         BotonNombre.setText("nombre");
         BotonNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -132,14 +122,7 @@ public class ModificarCliente extends javax.swing.JPanel {
             }
         });
 
-        BotonId.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
-        BotonId.setText("id del cliente");
-        BotonId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonIdActionPerformed(evt);
-            }
-        });
-
+        Opciones.add(BotonPlaca);
         BotonPlaca.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         BotonPlaca.setText("placa del vehiculo");
         BotonPlaca.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +131,7 @@ public class ModificarCliente extends javax.swing.JPanel {
             }
         });
 
+        Opciones.add(BotonTipo);
         BotonTipo.setFont(new java.awt.Font("Showcard Gothic", 0, 12)); // NOI18N
         BotonTipo.setText("tipo vehiculo");
         BotonTipo.addActionListener(new java.awt.event.ActionListener() {
@@ -176,10 +160,6 @@ public class ModificarCliente extends javax.swing.JPanel {
                                 .addGap(32, 32, 32)
                                 .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ContenedorRegistroInLayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(ContenedorRegistroInLayout.createSequentialGroup()
                                 .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
@@ -188,16 +168,14 @@ public class ModificarCliente extends javax.swing.JPanel {
                                 .addGap(32, 32, 32)
                                 .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(ContenedorRegistroInLayout.createSequentialGroup()
                                         .addComponent(BotonNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(BotonId, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(67, 67, 67)
                                         .addComponent(BotonPlaca)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(49, 49, 49)
                                         .addComponent(BotonTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(CambioTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(CambioTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(ContenedorRegistroInLayout.createSequentialGroup()
                         .addGap(246, 246, 246)
                         .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -211,26 +189,19 @@ public class ModificarCliente extends javax.swing.JPanel {
                 .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ContenedorRegistroInLayout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(Id, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ContenedorRegistroInLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Placa, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BotonId, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(BotonPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(BotonTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BotonNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -285,9 +256,6 @@ public class ModificarCliente extends javax.swing.JPanel {
              if (BotonNombre.isSelected()) {
                  //Actualizar el nombre del cliente con nuevoValor
                  clienteActual.setNombre(Cambio);
-             } else if (BotonId.isSelected()) {
-                 //Actualizar la ID del cliente con nuevoValor
-                 clienteActual.setId(Cambio);
              } else if (BotonPlaca.isSelected()) {
                  //Actualizar la placa del vehículo con nuevoValor
                  clienteActual.getVehiculos().get(0).setPlaca(Cambio);
@@ -305,10 +273,6 @@ public class ModificarCliente extends javax.swing.JPanel {
              JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_ActualizarMouseClicked
-
-    private void BotonIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonIdActionPerformed
 
     private void BotonNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNombreActionPerformed
         // TODO add your handling code here:
@@ -333,7 +297,6 @@ public class ModificarCliente extends javax.swing.JPanel {
                 
                 // Mostrar la información en los JLabel correspondientes
                 Nombre.setText(cliente.getNombre());
-                Id.setText(cliente.getId());
                 Placa.setText(cliente.getVehiculos().get(0).getPlaca());
                 Tipo.setText(cliente.getVehiculos().get(0).getTipoVehiculo());
 
@@ -345,19 +308,17 @@ public class ModificarCliente extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Actualizar;
-    private javax.swing.JRadioButton BotonId;
     private javax.swing.JRadioButton BotonNombre;
     private javax.swing.JRadioButton BotonPlaca;
     private javax.swing.JRadioButton BotonTipo;
     private javax.swing.JTextField CambioTXT;
     private javax.swing.JPanel ContenedorRegistroIn;
-    private javax.swing.JLabel Id;
     private javax.swing.JLabel Nombre;
+    private javax.swing.ButtonGroup Opciones;
     private javax.swing.JLabel Placa;
     private javax.swing.JLabel Tipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
