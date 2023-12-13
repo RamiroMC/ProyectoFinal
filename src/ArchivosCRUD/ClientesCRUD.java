@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class ClientesCRUD {
 
-    //Ruta del archivo donde se almacenarán los clientes
+    //Ruta del archivo donde se almacenarán los clientes.
     private static final String URL = "Clientes.dat";
 
     /**
@@ -26,13 +26,13 @@ public class ClientesCRUD {
      * @param cliente El objeto Cliente que se va a agregar al archivo.
      */
     public static void Create(Cliente cliente) {
-        //Leer la lista actual de clientes del archivo
+        //Leer la lista actual de clientes del archivo.
         ArrayList<Cliente> clientes = Read();
-        //Agregar el nuevo cliente a la lista
+        //Agregar el nuevo cliente a la lista.
         clientes.add(cliente);
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(URL))) {
-            //Escribir la lista actualizada de clientes en el archivo
+            //Escribir la lista actualizada de clientes en el archivo.
             for (Cliente c : clientes) {
                 oos.writeObject(c);
             }
@@ -49,14 +49,14 @@ public class ClientesCRUD {
     public static ArrayList<Cliente> Read() {
         ArrayList<Cliente> clientes = new ArrayList<>();
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(URL))) {
-            //Leer continuamente del archivo hasta que se alcance el final del archivo (EOF)
+            //Leer continuamente del archivo hasta que se alcance el final del archivo (EOF).
             while (true) {
                 try {
-                    //Intentar leer un objeto Cliente del archivo y agregarlo a la lista
+                    //Intentar leer un objeto Cliente del archivo y agregarlo a la lista.
                     Cliente cliente = (Cliente) ois.readObject();
                     clientes.add(cliente);
                 } catch (EOFException e) {
-                    //Se alcanzó el final del archivo
+                    //Se alcanzó el final del archivo.
                     break;
                 }
             }
@@ -71,13 +71,13 @@ public class ClientesCRUD {
      * @param clienteActualizado El objeto Cliente con la información actualizada.
      */
     public static void Update(Cliente clienteActualizado) {
-        //Leer la lista actual de clientes del archivo
+        //Leer la lista actual de clientes del archivo.
         ArrayList<Cliente> clientes = Read();
         boolean encontrado = false;
 
         for (int i = 0; i < clientes.size(); i++) {
             if (clientes.get(i).getId().equals(clienteActualizado.getId())) {
-                //Reemplazar el cliente existente con el cliente actualizado
+                //Reemplazar el cliente existente con el cliente actualizado.
                 clientes.set(i, clienteActualizado);
                 encontrado = true;
                 break;
@@ -90,7 +90,7 @@ public class ClientesCRUD {
         }
 
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(URL))) {
-            //Escribir la lista actualizada de clientes en el archivo
+            //Escribir la lista actualizada de clientes en el archivo.
             for (Cliente cliente : clientes) {
                 oos.writeObject(cliente);
             }
@@ -105,13 +105,13 @@ public class ClientesCRUD {
      * @param id El ID del cliente que se marcará como inactivo.
      */
     public static void Delete(String id) {
-        //Leer la lista actual de clientes del archivo
+        //Leer la lista actual de clientes del archivo.
         ArrayList<Cliente> clientes = Read();
         boolean encontrado = false;
 
         for (Cliente cliente : clientes) {
             if (cliente.getId().equals(id)) {
-                //Marcar el cliente como inactivo
+                //Marcar el cliente como inactivo.
                 cliente.setEstado(false);
                 encontrado = true;
                 Update(cliente);

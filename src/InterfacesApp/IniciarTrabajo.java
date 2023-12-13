@@ -19,17 +19,19 @@ import javax.swing.JOptionPane;
  */
 public class IniciarTrabajo extends javax.swing.JPanel {
 
-     private String idMecanico;
+    //Variables de clase
+    private String idMecanico;
     private LocalDate fecha;
     private String codigoUnicoAUX;
 
+    /**
+     * Constructor de la clase IniciarTrabajo.
+     * Inicializa la interfaz gráfica y establece la fecha actual.
+     */
     public IniciarTrabajo() {
         initComponents();
-
         fecha = LocalDate.now();
-
         fechaProgramaJBL.setText(fecha + "");
-
     }
 
     public String getIdMecanico() {
@@ -200,7 +202,12 @@ public class IniciarTrabajo extends javax.swing.JPanel {
         jLabel11.setText("vehiculo:");
         jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        vehiculosDisponibles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        vehiculosDisponibles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "item 1" }));
+        vehiculosDisponibles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vehiculosDisponiblesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -313,14 +320,13 @@ public class IniciarTrabajo extends javax.swing.JPanel {
 
     private void IniciarTrabajoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarTrabajoMouseClicked
 
+        //Obtiene los datos del formulario.
         String idCliente = idClienteTXT.getText();
-
         String tipoTrabajo = "";
-
         String detalles = Detalles.getText();
-
         int plazo = 0;
 
+        //Determina el tipo de trabajo seleccionado.
         if (repMecanica.isSelected()) {
             tipoTrabajo = "REPARACION MECANICA";
             plazo = 14;
@@ -332,41 +338,33 @@ public class IniciarTrabajo extends javax.swing.JPanel {
             plazo = 7;
         }
 
+        //Valida la entrada del usuario.
         if (idCliente.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
         } else {
-
+            //Busca el cliente en la base de datos.
             ArrayList<Cliente> clientes = ClientesCRUD.Read();
-
             ArrayList<Oficios> aux;
 
             for (Cliente cliente : clientes) {
-
                 if (cliente.getId().equals(idCliente)) {
-
+                    //Actualiza la lista de oficios del cliente.
                     aux = cliente.getOficios();
-
                     Oficios ofAUX = new Oficios(codigoUnicoAUX, tipoTrabajo, fecha, plazo, idCliente, idMecanico, detalles);
-
                     aux.add(ofAUX);
-
                     cliente.setOficios(aux);
-
                     ClientesCRUD.Update(cliente);
-                    
-                    System.out.println( ofAUX.toString()); 
-                    
-                   JOptionPane.showMessageDialog(null, "El trabajo se ha creado correctamente", "TRABAJO", JOptionPane.OK_OPTION);
+                    System.out.println(ofAUX.toString());
+                    JOptionPane.showMessageDialog(null, "El trabajo se ha creado correctamente", "TRABAJO", JOptionPane.OK_OPTION);
                 }
-
             }
 
+            //Limpia los campos del formulario.
             idClienteTXT.setText("");
             Detalles.setText("");
-
         }
 
+        //Oculta el panel y actualiza la interfaz.
         this.setVisible(false);
         this.revalidate();
         this.repaint();
@@ -398,64 +396,65 @@ public class IniciarTrabajo extends javax.swing.JPanel {
 
     private void idClienteTXTFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_idClienteTXTFocusLost
 
+        //Obtiene el ID del cliente ingresado por el usuario.
         String idAux = idClienteTXT.getText();
 
+        //Inicializa el contador de oficios del cliente.
         int contOficios = 0;
 
+        //Variable para verificar si el ID del cliente existe.
         boolean existe = false;
 
+        //Verifica si el ID del cliente no está vacío.
         if (!idAux.isEmpty()) {
-
+            //Obtiene la lista de clientes desde la base de datos.
             ArrayList<Cliente> clientes = ClientesCRUD.Read();
 
+            //Itera sobre la lista de clientes para encontrar el cliente con el ID proporcionado.
             for (Cliente cliente : clientes) {
-
                 if (cliente.getId().equals(idAux)) {
-
+                    //Actualiza el contador de oficios y el código único para el nuevo trabajo.
                     contOficios = cliente.getOficios().size();
-
                     codigoUnicoAUX = idAux + "-" + (contOficios + 1);
-
                     IdTrabajo.setText(codigoUnicoAUX);
 
-                    existe = true;
-
+                    //Actualiza la lista de vehículos disponibles para el cliente.
                     ArrayList<Vehiculo> vAux = cliente.getVehiculos();
-
                     ArrayList<String> tiposVAux = new ArrayList<>();
 
                     for (Vehiculo veh : vAux) {
-
                         tiposVAux.add(veh.getTipoVehiculo());
-
                     }
 
-                    // Crear un DefaultComboBoxModel y agregar los elementos del ArrayList
+                    //Creamos un modelo de ComboBox y agrega los elementos del ArrayList.
                     DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(tiposVAux.toArray(new String[0]));
                     vehiculosDisponibles.setModel(model);
 
+                    //Indicamos que el ID del cliente existe.
+                    existe = true;
                 }
-
             }
 
-            if (existe == false) {
-
-                JOptionPane.showMessageDialog(null, "el id de cliente no existe", "Alerta", JOptionPane.WARNING_MESSAGE);
+            //Si el ID del cliente no existe, muestra un mensaje de advertencia.
+            if (!existe) {
+                JOptionPane.showMessageDialog(null, "El ID del cliente no existe", "Alerta", JOptionPane.WARNING_MESSAGE);
                 idClienteTXT.setText("");
                 IdTrabajo.setText("");
             }
-
         } else {
+            //Si el ID del cliente está vacío, limpia los campos relacionados.
             idClienteTXT.setText("");
             IdTrabajo.setText("");
         }
-
-
     }//GEN-LAST:event_idClienteTXTFocusLost
 
     private void repLatoneriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repLatoneriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_repLatoneriaActionPerformed
+
+    private void vehiculosDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiculosDisponiblesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vehiculosDisponiblesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

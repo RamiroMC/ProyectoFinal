@@ -17,7 +17,7 @@ public abstract class Trabajo implements Serializable {
 
     private String idTrabajo; //LEER EN ARCHIVO
 
-    private int diasTrabajo;
+    private int diasTrabajo; //Se llama días, pero lo trabajamos en horas (1 dia = 1 hora). 
 
     private double precioMaterial;
 
@@ -25,7 +25,7 @@ public abstract class Trabajo implements Serializable {
 
     private LocalDate fechaInicio;
 
-    private LocalDate fechaFinal;
+    private LocalDate fechaFinal; 
 
     private int plazoMaximo;
 

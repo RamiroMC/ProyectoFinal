@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class EditarProducto extends javax.swing.JPanel {
 
+    //Almacena el ID del producto que se está editando.
     private int id_producto;
 
     public EditarProducto() {
@@ -24,7 +25,11 @@ public class EditarProducto extends javax.swing.JPanel {
     public int getId_producto() {
         return id_producto;
     }
-
+    
+    /**
+     * Establece el ID del producto que se está editando.
+     * Actualiza la interfaz gráfica para mostrar el ID.
+     */
     public void setId_producto(int id_producto) {
         this.id_producto = id_producto;
 
@@ -202,7 +207,7 @@ public class EditarProducto extends javax.swing.JPanel {
     }//GEN-LAST:event_precioActionPerformed
 
     private void actualizarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizarBTNMouseClicked
-
+        //Obtener datos ingresados por el usuario.
         String nombreproducto = nombreProducto.getText();
         String stock = Stock.getText();
         String precioProducto = precio.getText();
@@ -210,72 +215,60 @@ public class EditarProducto extends javax.swing.JPanel {
         boolean existe = false;
 
         try {
-
+            //Convertir datos a tipos numéricos.
             int stock_int = Integer.parseInt(stock);
             float precioProducto_float = Float.parseFloat(precioProducto);
 
+            //Validar datos ingresados.
             if (nombreproducto.isEmpty() || stock.isEmpty() || precioProducto.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
-
+                JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
             } else {
-
+                //Verificar que stock y precio no sean negativos.
                 if (stock_int < 0 || precioProducto_float < 0) {
-                    JOptionPane.showMessageDialog(null, "el stock y el precio no pueden ser negativos", "Alerta", JOptionPane.WARNING_MESSAGE);
-
+                    JOptionPane.showMessageDialog(null, "El stock y el precio no pueden ser negativos", "Alerta", JOptionPane.WARNING_MESSAGE);
                 } else {
-
+                    //Obtener la lista de productos desde la base de datos simulada.
                     ArrayList<Inventario> productos = InventarioCRUD.Read();
 
+                    //Verificar si ya existe un producto con el mismo nombre.
                     for (Inventario producto : productos) {
-
                         if (producto.getNombre().equals(nombreproducto) && producto.getId() != id_producto) {
-
                             existe = true;
-
                         }
-
                     }
 
+                    //Si no existe, realizar la actualización.
                     if (existe == false) {
-
                         for (Inventario producto : productos) {
-
                             if (producto.getId() == id_producto) {
-
                                 producto.setNombre(nombreproducto);
                                 producto.setCantidad(stock_int);
                                 producto.setPrecio(precioProducto_float);
 
-                                JOptionPane.showMessageDialog(null, "producto actualizado correctamente", "Trabajo exitoso", JOptionPane.OK_OPTION);
+                                JOptionPane.showMessageDialog(null, "Producto actualizado correctamente", "Trabajo exitoso", JOptionPane.OK_OPTION);
 
                                 InventarioCRUD.Update(producto);
-
                             }
-
                         }
-
                     } else {
-                        JOptionPane.showMessageDialog(null, "ya existe un producto con este nombre", "Trabajo exitoso", JOptionPane.OK_OPTION);
-
+                        JOptionPane.showMessageDialog(null, "Ya existe un producto con este nombre", "Trabajo exitoso", JOptionPane.OK_OPTION);
                     }
-
                 }
-
             }
-
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "stock y precio deben ser numericos", "Alerta", JOptionPane.WARNING_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Stock y precio deben ser numéricos", "Alerta", JOptionPane.WARNING_MESSAGE);
         }
 
+        //Limpiar campos de entrada.
         nombreProducto.setText("");
-
         Stock.setText("");
         precio.setText("");
 
+        //Ocultar el panel actual.
         this.setVisible(false);
         this.revalidate();
         this.repaint();
+    
     }//GEN-LAST:event_actualizarBTNMouseClicked
 
 

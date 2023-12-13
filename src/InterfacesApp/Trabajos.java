@@ -225,7 +225,7 @@ public class Trabajos extends javax.swing.JPanel {
     }//GEN-LAST:event_EmpezarMouseClicked
 
     private void buscarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarBTNMouseClicked
-
+        //Guardamos las información registrada.
         String idTrabajoAUX = buscarTrabajoTXT.getText();
 
         ArrayList<Cliente> clientes = ClientesCRUD.Read();
@@ -233,6 +233,7 @@ public class Trabajos extends javax.swing.JPanel {
         boolean trabajoEXiste = false;
         boolean mecanicoExiste = false;
 
+        //Buscamos dentro del arraylist de Clientes el IdTrabajo a buscar.
         for (Cliente cliente : clientes) {
 
             for (Oficios oficio : cliente.getOficios()) {
@@ -244,7 +245,7 @@ public class Trabajos extends javax.swing.JPanel {
                 if (oficio.getIdMecanico().equals(idMecanico)) {
                     mecanicoExiste = true;
                 }
-
+                //Validamos que sea el trabajo a buscar y que este no este finalizado ni pagado. 
                 if ((oficio.getIdTrabajo().equals(idTrabajoAUX) && oficio.getIdMecanico().equals(idMecanico) && oficio.getPagado() == false && oficio.getEstadoTrabajo() == true)) {
 
                     Mecanica m = new Mecanica();
@@ -281,10 +282,10 @@ public class Trabajos extends javax.swing.JPanel {
     }//GEN-LAST:event_buscarBTNMouseClicked
 
     private void mostrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarBTNMouseClicked
-        // Supongamos que tienes un ArrayList bidimensional
+       
         ArrayList<Cliente> datos = ClientesCRUD.Read();
 
-        // Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
+        //Creamos un DefaultTableModel con datos bidimensionales y lo establecemos en la JTable.
         DefaultTableModel model = new DefaultTableModel();
 
         model.addColumn("Id Trabajo");
@@ -294,7 +295,7 @@ public class Trabajos extends javax.swing.JPanel {
         model.addColumn("Plazo maximo");
         model.addColumn("Costo");
 
-        // Agregar las filas al modelo
+        //Agregar las filas al modelo.
         for (Cliente fila : datos) {
 
             ArrayList<Oficios> trabajos = fila.getOficios();
@@ -307,7 +308,7 @@ public class Trabajos extends javax.swing.JPanel {
             }
 
         }
-
+        //Setteamos la tabla.
         tablaTRABAJOS.setModel(model);
     }//GEN-LAST:event_mostrarBTNMouseClicked
 

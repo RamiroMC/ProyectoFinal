@@ -216,21 +216,22 @@ public class TablonInventario extends javax.swing.JPanel {
     }//GEN-LAST:event_RegistroMouseClicked
 
     private void BuscarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarProductoMouseClicked
-
+        
+        //Guardamos los datos ingresados.
         String idProductoAUX = productoNameTXT.getText();
 
         try {
-
+            //Parseamos.
             int producto_id = Integer.parseInt(idProductoAUX);
 
             ArrayList<Inventario> productos = InventarioCRUD.Read();
 
             boolean existe = false;
-
+            
+            //Recorremos todo el arraylist para ver si esta ya registardo el producto (material).
             for (Inventario producto : productos) {
-
+                //Si se encuentra, enviamos su id a EditarProducto.
                 if (producto.getId() == producto_id) {
-
                     EditarProducto m = new EditarProducto();
                     m.setId_producto(producto_id);
                     m.setSize(800, 700);
@@ -261,10 +262,10 @@ public class TablonInventario extends javax.swing.JPanel {
     }//GEN-LAST:event_BuscarProductoMouseClicked
 
     private void MostrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MostrarBTNMouseClicked
-        //Supongamos que tienes un ArrayList bidimensional
+      
         ArrayList<Inventario> datos = InventarioCRUD.Read();
 
-        //Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
+        //Creamos un DefaultTableModel con datos bidimensionales y lo establecemos en la JTable.
         DefaultTableModel model = new DefaultTableModel();
 
         model.addColumn("Id");
@@ -272,12 +273,12 @@ public class TablonInventario extends javax.swing.JPanel {
         model.addColumn("Cantidad");
         model.addColumn("Precio Unidad");
 
-        //Agregar las filas al modelo
+        //Agregar las filas al modelo.
         for (Inventario fila : datos) {
 
             model.addRow(new Object[]{fila.getId(), fila.getNombre(), fila.getCantidad(), fila.getPrecio()});
         }
-
+        //Setteamos la tabla. 
         tablaPRODUCTOS.setModel(model);
     }//GEN-LAST:event_MostrarBTNMouseClicked
 

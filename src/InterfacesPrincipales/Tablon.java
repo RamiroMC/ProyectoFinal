@@ -295,14 +295,12 @@ public class Tablon extends javax.swing.JFrame {
     }//GEN-LAST:event_CajaBotonMouseClicked
 
     private void CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarSesionMouseClicked
+                                                 
         
-        //
-                                          
-        
-        //Cerrar la ventana actual
+        //Cerrar la ventana actual.
         this.dispose();
 
-        //Mostrar la ventana de inicio de sesión (Login)
+        //Mostrar la ventana de inicio de sesión (Login).
         Login login = new Login();
         login.setVisible(true);
 

@@ -128,13 +128,13 @@ public class RegistroNuevo extends javax.swing.JPanel {
         char[] txt = ContraseñaTXT.getPassword();
         String contraseñaMecanico = new String(txt);
 
-        //Validar que el nombre y la contraseña no estén vacíos
+        //Validar que el nombre y la contraseña no estén vacíos.
         if (nombreMecanico.isEmpty() || contraseñaMecanico.isEmpty() || cedula.isEmpty()) {
             JOptionPane.showMessageDialog(null, "deben llenarse todos los campos", "Alerta", JOptionPane.WARNING_MESSAGE);
 
         } else {
 
-            //Validar que el nombre solo contenga letras
+            //Validar que el nombre solo contenga letras.
             if (!esNombreValido(nombreMecanico)) {
                 JOptionPane.showMessageDialog(null, "nombre debe contener solo letras", "Alerta", JOptionPane.WARNING_MESSAGE);
 
@@ -142,7 +142,7 @@ public class RegistroNuevo extends javax.swing.JPanel {
 
                 boolean existe = false;
 
-                //Validar que no haya mecánicos con el mismo nombre y contraseña
+                //Validar que no haya mecánicos con el mismo nombre y contraseña.
                 ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
 
                 ArrayList<Cliente> clientes = ClientesCRUD.Read();
@@ -168,10 +168,10 @@ public class RegistroNuevo extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "esta identificacion de cliente ya existe", "Alerta", JOptionPane.WARNING_MESSAGE);
 
                 } else {
-                    //Crear un objeto Mecanico
+                    //Crear un objeto Mecanico.
                     Mecanico mecanico = new Mecanico(nombreMecanico, contraseñaMecanico, cedula);
 
-                    //Guardar el Mecanico en el archivo binario
+                    //Guardar el Mecanico en el archivo binario.
                     MecanicosCRUD.Create(mecanico);
 
                     JOptionPane.showMessageDialog(null, "el mecanico " + nombreMecanico + " con numero de identificacion: " + cedula + " se registro correctamente", "Alerta", JOptionPane.WARNING_MESSAGE);

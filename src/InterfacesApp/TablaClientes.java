@@ -225,17 +225,17 @@ public class TablaClientes extends javax.swing.JPanel {
 
     private void mostrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarBTNMouseClicked
 
-        //Supongamos que tienes un ArrayList bidimensional
+        
         ArrayList<Cliente> datos = ClientesCRUD.Read();
 
-        //Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
+        //Creamos un DefaultTableModel con datos bidimensionales y lo establecemos en la JTable.
         DefaultTableModel model = new DefaultTableModel();
 
         model.addColumn("Nombre");
         model.addColumn("Identificacion");
         model.addColumn("Total Deuda");
 
-        // Agregar las filas al modelo
+        //Agregar las filas al modelo.
         for (Cliente fila : datos) {
 
             ArrayList<Oficios> deudas = fila.getOficios();
@@ -248,7 +248,7 @@ public class TablaClientes extends javax.swing.JPanel {
 
             model.addRow(new Object[]{fila.getNombre(), fila.getId(), deuda_total});
         }
-
+        //Setteamos la tabla.
         tablaCLIENTES.setModel(model);
 
     }//GEN-LAST:event_mostrarBTNMouseClicked
@@ -256,9 +256,10 @@ public class TablaClientes extends javax.swing.JPanel {
     private void BuscarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarClienteMouseClicked
         // TODO add your handling code here
 
-        //Obtener el ID ingresado
+        //Obtener el ID ingresado.
         String idCliente = BuscarClienteTXT.getText();
-
+        
+        //Validamos que no este vació. 
         if (idCliente.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite una id", "Alerta", JOptionPane.WARNING_MESSAGE);
         } else {
@@ -266,7 +267,8 @@ public class TablaClientes extends javax.swing.JPanel {
             boolean encontrado = false;
 
             ArrayList<Cliente> clientes = ClientesCRUD.Read();
-
+            
+            //Buscamos si el cliente se encuentra registrado. 
             for (Cliente cliente : clientes) {
 
                 if (cliente.getId().equals(idCliente)) {

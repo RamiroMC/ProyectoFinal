@@ -168,101 +168,96 @@ public class Caja extends javax.swing.JPanel {
     }//GEN-LAST:event_IdClienteTXTActionPerformed
 
     private void BuscarIdClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarIdClienteMouseClicked
-        // TODO add your handling code here:
         //Obtener el ID ingresado
         String idCliente = IdClienteTXT.getText();
 
         if (idCliente.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Digite una id", "Alerta", JOptionPane.WARNING_MESSAGE);
         } else {
-
             boolean encontrado = false;
 
+            //Obtener la lista de clientes desde la base de datos simulada.
             ArrayList<Cliente> clientes = ClientesCRUD.Read();
 
             ArrayList<Oficios> oficios;
 
+            //Crear el modelo de la tabla.
             DefaultTableModel model = new DefaultTableModel();
-
             model.addColumn("ID DEL TRABAJO");
             model.addColumn("ESTADO");
             model.addColumn("TOTAL PAGAR");
 
+            //Buscar el cliente por ID
             for (Cliente cliente : clientes) {
-
                 if (cliente.getId().equals(idCliente)) {
-
                     oficios = cliente.getOficios();
 
                     for (Oficios oficio : oficios) {
-
                         if (oficio.getEstadoTrabajo() == false && oficio.getPagado() == false) {
-
+                            //Agregar información del trabajo a la tabla.
                             model.addRow(new Object[]{oficio.getIdTrabajo(), "FINALIZADO", oficio.cotizarPrecio()});
-
+                            //Actualizar el total a pagar.
                             totalPagar += oficio.cotizarPrecio();
-
                         }
-
                     }
 
                     encontrado = true;
                     break;
                 }
-
             }
 
+            //Mostrar mensajes según el resultado de la búsqueda.
             if (encontrado == false) {
                 JOptionPane.showMessageDialog(null, "Id del cliente no registrada", "Alerta", JOptionPane.WARNING_MESSAGE);
             }
 
+            //Actualizar el valor total en la interfaz.
             ValorTXT.setText(totalPagar + "");
+            //Establecer el modelo de la tabla.
             TablaTrabajos.setModel(model);
         }
-
     }//GEN-LAST:event_BuscarIdClienteMouseClicked
 
     private void CobrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CobrarMouseClicked
-        // TODO add your handling code here:
+        //Obtener el ID ingresado.
         String idCliente = IdClienteTXT.getText();
 
+        //Obtener la lista de clientes desde la base de datos simulada.
         ArrayList<Cliente> clientes = ClientesCRUD.Read();
-
         ArrayList<Oficios> oficios;
-
         boolean encontrado = false;
 
+        //Buscar el cliente por ID.
         for (Cliente cliente : clientes) {
-
             if (cliente.getId().equals(idCliente)) {
-
                 oficios = cliente.getOficios();
 
+                //Marcar como pagados los trabajos finalizados y no pagados.
                 for (Oficios oficio : oficios) {
-
                     if (oficio.getEstadoTrabajo() == false && oficio.getPagado() == false) {
-                        
                         oficio.setPagado(true);
-            
                     }
-
                 }
-                
+
+                //Actualizar la lista de oficios del cliente.
                 cliente.setOficios(oficios);
-                
+
+                //Actualizar la información en la base de datos simulada.
                 ClientesCRUD.Update(cliente);
-                
+
                 encontrado = true;
                 break;
             }
-
         }
-        
+
+        //Mostrar mensajes según el resultado de la búsqueda.
         if (encontrado == false) {
             JOptionPane.showMessageDialog(null, "Id del cliente no registrada", "Alerta", JOptionPane.WARNING_MESSAGE);
         }
 
+        //Mostrar mensaje de pago exitoso.
         JOptionPane.showMessageDialog(null, "Se ha pagado con exito", "PAGO EXITOSO", JOptionPane.OK_OPTION);
+        //Ocultar el panel actual.
         this.setVisible(false);
         this.revalidate();
         this.repaint();

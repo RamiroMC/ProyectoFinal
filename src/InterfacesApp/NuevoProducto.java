@@ -158,21 +158,22 @@ public class NuevoProducto extends javax.swing.JPanel {
 
     @SuppressWarnings("null")
     private void RegistrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarClienteMouseClicked
-
+        //Obtenemos los datos ingresados.
         String nombreProducto = NombreProducto.getText();
         String stock = Stock.getText();
         String precioProducto = precio.getText();
 
         try {
-
+            //Convertimos el stock a entero y el precio a float..¿
             int stock_int = Integer.parseInt(stock);
             float precioProducto_float = Float.parseFloat(precioProducto);
 
+            //Verificamos que los campos no estén vacíos
             if (nombreProducto.isEmpty() || stock.isEmpty() || precioProducto.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
 
             } else {
-
+                //Verificamos que el stock y el precio no sean negativos.
                 if (stock_int < 0 || precioProducto_float < 0) {
                     JOptionPane.showMessageDialog(null, "el stock y el precio no pueden ser negativos", "Alerta", JOptionPane.WARNING_MESSAGE);
 
@@ -184,6 +185,7 @@ public class NuevoProducto extends javax.swing.JPanel {
 
                     int size_productos = productos.size();
 
+                    //Verificamos si el producto ya existe en el inventario.
                     for (Inventario producto : productos) {
 
                         if (producto.getNombre().equals(nombreProducto)) {
@@ -200,10 +202,11 @@ public class NuevoProducto extends javax.swing.JPanel {
 
                     } else {
 
+                        //Creamos un nuevo producto y lo agregamos al inventario.
                         Inventario producto = new Inventario(nombreProducto, stock_int, precioProducto_float, size_productos + 1);
 
                         InventarioCRUD.Create(producto);
-                        
+
                         JOptionPane.showMessageDialog(null, "El producto se ha creado correctamente", "PRODUCTO", JOptionPane.OK_OPTION);
 
                     }
@@ -217,11 +220,12 @@ public class NuevoProducto extends javax.swing.JPanel {
 
         }
 
+        //Limpiamos los campos de texto.
         NombreProducto.setText("");
-
         Stock.setText("");
         precio.setText("");
-        
+
+        //Ocultamos el panel actual y refrescamos la interfaz.
         this.setVisible(false);
         this.revalidate();
         this.repaint();

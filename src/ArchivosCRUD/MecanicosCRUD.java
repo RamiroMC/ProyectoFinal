@@ -61,7 +61,7 @@ public class MecanicosCRUD {
         boolean encontrado = false;
 
         for (int i = 0; i < mecanicos.size(); i++) {
-            if (mecanicos.get(i).getId() == mecanicoActualizado.getId()) {
+            if (mecanicos.get(i).getId().equals(mecanicoActualizado.getId())) {
                 mecanicos.set(i, mecanicoActualizado);
                 encontrado = true;
                 break;

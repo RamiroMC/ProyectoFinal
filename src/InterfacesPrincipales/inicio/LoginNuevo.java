@@ -152,7 +152,7 @@ public class LoginNuevo extends javax.swing.JPanel {
     }//GEN-LAST:event_cedulaTXTActionPerformed
 
     private void IniciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IniciarMouseClicked
-        //Obtener los datos de los campos de texto
+        //Obtener los datos de los campos de texto.
         String cedula = cedulaTXT.getText();
 
         char[] txt = ContraseñaTXT.getPassword();
@@ -182,18 +182,18 @@ public class LoginNuevo extends javax.swing.JPanel {
 
             }
 
-            //Verificar el resultado de la autenticación del usuario
+            //Verificar el resultado de la autenticación del usuario.
             if (usuarioAutenticado) {
-                //Si los datos son correctas, mostrar el siguiente tablón y cerrar la ventana actual
+                //Si los datos son correctas, mostrar el siguiente tablón y cerrar la ventana actual.
 
-                //Asignar el ID del mecánico al Tablon
+                //Asignar el ID del mecánico al Tablon.
                 Tablon tablon = new Tablon();
                 tablon.setIdMecanico(idMecanico);
 
-                //Cerrar la ventana actual
+                //Cerrar la ventana actual.
                 this.setVisible(false);
 
-                //Mostrar el nuevo tablón
+                //Mostrar el nuevo tablón.
                 tablon.setVisible(true);
 
                 JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -202,7 +202,7 @@ public class LoginNuevo extends javax.swing.JPanel {
                 }
 
             } else {
-                //Si los datos son incorrectas, imprimir un mensaje de error en la consola
+                //Si los datos son incorrectas, imprimir un mensaje de error en la consola.
                 JOptionPane.showMessageDialog(null, "usuario o contraseña incorrectos", "Alerta", JOptionPane.WARNING_MESSAGE);
 
             }

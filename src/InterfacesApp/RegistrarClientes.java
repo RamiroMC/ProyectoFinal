@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class RegistrarClientes extends javax.swing.JPanel {
 
     /**
-     * Creates new form RegistrarClientes
+     * Creates new form RegistrarClientes.
      */
     public RegistrarClientes() {
         initComponents();
@@ -210,6 +210,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
 
     private void RegistrarClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrarClienteMouseClicked
 
+        //Obtenemos los datos ingresados por el usuario.
         String nombreCliente = NombreCliente.getText();
         String idCliente = IdCliente.getText();
         String placaVehiculo = Placa.getText();
@@ -217,6 +218,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
         String colorVehiculo = Color.getText();
         String vehiculoTipo = tipoVehiculo.getSelectedItem().toString();
 
+        //Verificamos que los campos no estén vacíos.
         if (nombreCliente.isEmpty() || idCliente.isEmpty() || placaVehiculo.isEmpty() || marcaVehiculo.isEmpty()
                 || colorVehiculo.isEmpty() || vehiculoTipo.isEmpty()) {
             JOptionPane.showMessageDialog(null, "debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
@@ -228,6 +230,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
             ArrayList<Cliente> clientes = ClientesCRUD.Read();
             ArrayList<Mecanico> mecanicos = MecanicosCRUD.Read();
 
+            //Verificamos si la identificación de cliente ya existe.
             for (Cliente cliente : clientes) {
 
                 if (cliente.getId().equals(idCliente)) {
@@ -254,6 +257,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
 
             } else {
 
+                //Creamos un nuevo vehículo y cliente, luego los agregamos al archivo. 
                 Vehiculo vAux = new Vehiculo(placaVehiculo, marcaVehiculo, colorVehiculo, vehiculoTipo);
 
                 Cliente cAux = new Cliente(idCliente, nombreCliente, vAux);
@@ -264,6 +268,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
 
             }
 
+            //Limpiamos los campos de texto.
             NombreCliente.setText("");
             IdCliente.setText("");
             Placa.setText("");
@@ -272,6 +277,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
 
         }
 
+        //Ocultar el panel actual y refrescar la interfaz.
         this.setVisible(false);
         this.revalidate();
         this.repaint();

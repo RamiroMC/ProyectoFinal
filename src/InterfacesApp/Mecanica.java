@@ -19,10 +19,9 @@ import javax.swing.JOptionPane;
  */
 public class Mecanica extends javax.swing.JPanel {
 
+    //Variables para almacenar información del trabajo actual.
     private String idTrabajoAUX;
-
     private Double costo_anterior = 1.0, costo_actual = 1.0;
-
     private Double imprimir = 1.0;
 
     public Mecanica() {
@@ -37,40 +36,30 @@ public class Mecanica extends javax.swing.JPanel {
     public void setIdTrabajoAUX(String idTrabajoAUX) {
         this.idTrabajoAUX = idTrabajoAUX;
 
+        //Obtiene la información del trabajo actual desde la base de datos.
         ArrayList<Cliente> clientes = ClientesCRUD.Read();
-
         ArrayList<Oficios> oficios;
 
+        //Busca el trabajo con el ID proporcionado y actualiza la interfaz con la información correspondiente.
         for (Cliente cliente : clientes) {
-
             oficios = cliente.getOficios();
-
             for (Oficios oficio : oficios) {
-
                 if (oficio.getIdTrabajo().equals(idTrabajoAUX)) {
 
                     detallesTXT.setText(oficio.getDetalles());
-
                     tipoTrabajoTXT.setText(oficio.getTipoTrabajo());
-
                     costo_anterior = oficio.cotizarPrecio();
-
                     costo_actual = costo_anterior;
-
                     imprimir = costo_anterior;
-
                     costoANT.setText("costo anterior: $" + costo_anterior);
-
                     costoACT.setText("costo actual: $" + costo_actual);
 
+                    //Deshabilita la entrada de material si el trabajo es de tipo "REVISION".
                     if (oficio.getTipoTrabajo().equals("REVISION")) {
                         materialTXT.setEnabled(false);
                     }
-
                 }
-
             }
-
         }
     }
 
@@ -314,6 +303,7 @@ public class Mecanica extends javax.swing.JPanel {
 
     private void actualizarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizarBTNMouseClicked
 
+        //Obtener la información ingresada por el usuario.
         String idAux = materialTXT.getText();
 
         String horas = horasTXT.getText();
@@ -325,35 +315,39 @@ public class Mecanica extends javax.swing.JPanel {
         }
 
         try {
-
+            //Validar que las horas sean un número entero positivo.
             int horas_int = Integer.parseInt(horas);
 
             if (idAux.isEmpty() || horas.isEmpty()) {
+                //Mostrar mensaje de alerta si las horas no son válidas.
                 JOptionPane.showMessageDialog(null, "debe ingresar todos los datos correspondientes", "Alerta", JOptionPane.WARNING_MESSAGE);
 
             } else {
-
+                //Se leen todos los clientes.
                 ArrayList<Cliente> clientes = ClientesCRUD.Read();
 
                 ArrayList<Oficios> oficios;
-
+                //Se recorren todos los clientes.
                 for (Cliente cliente : clientes) {
-
+                    //Obtenemos los trabajos del cliente.
                     oficios = cliente.getOficios();
-
+                    //Los reccorremos
                     for (Oficios oficio : oficios) {
-
+                        //Validamos que el id del trabajo sea una que este registrado. 
                         if (oficio.getIdTrabajo().equals(idTrabajoAUX)) {
 
+                            //Actualización la información.
                             oficio.setDiasTrabajo(oficio.getDiasTrabajo() + horas_int);
+
                             oficio.setPrecioMaterial(oficio.getPrecioMaterial() + costo_actual);
 
                             oficio.setEstadoTrabajo(trabajando);
 
                             JOptionPane.showMessageDialog(null, "trabajo actualizado correctamente", "Trabajo exitoso", JOptionPane.OK_OPTION);
 
+                            //Setteamos los trabajos el cliente.
                             cliente.setOficios(oficios);
-                            
+                            //Actualizamos el archivo. 
                             ClientesCRUD.Update(cliente);
                         }
 
@@ -368,29 +362,32 @@ public class Mecanica extends javax.swing.JPanel {
 
         }
 
+        //Limpiamos los campos y ocultar la interfaz actual.
         materialTXT.setText("");
-
         horasTXT.setText("");
-       
+
         this.setVisible(false);
         this.revalidate();
         this.repaint();
     }//GEN-LAST:event_actualizarBTNMouseClicked
 
     private void materialTXTFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_materialTXTFocusLost
-
+        //Obtener el ID del material ingresado por el usuario.
         String idAux = materialTXT.getText();
 
         boolean existe = false;
 
+        //Verificar si el ID del material no está vacío.
         if (!idAux.isEmpty()) {
 
+            //Buscar el material en el inventario.
             ArrayList<Inventario> productos = InventarioCRUD.Read();
 
             for (Inventario producto : productos) {
 
                 String id = producto.getId() + "";
 
+                //Verificar si el material existe en el inventario.
                 if (id.equals(idAux)) {
 
                     existe = true;
@@ -403,6 +400,7 @@ public class Mecanica extends javax.swing.JPanel {
 
             }
 
+            //Mostrar mensaje de alerta si el material no existe.
             if (existe == false) {
 
                 JOptionPane.showMessageDialog(null, "el id de material no existe", "Alerta", JOptionPane.WARNING_MESSAGE);
@@ -411,6 +409,7 @@ public class Mecanica extends javax.swing.JPanel {
             }
 
         } else {
+            // Limpiar el campo de texto si el ID del material está vacío.
             materialTXT.setText("");
             costoACT.setText("costo actual: $" + costo_anterior);
         }
@@ -419,13 +418,15 @@ public class Mecanica extends javax.swing.JPanel {
     }//GEN-LAST:event_materialTXTFocusLost
 
     private void horasTXTFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_horasTXTFocusLost
-
+        //Obtener las horas ingresadas por el usuario.
         String horas = horasTXT.getText();
 
+        //Verificar si el campo de horas no está vacío.
         if (!horas.isEmpty()) {
 
             try {
 
+                //Validar que las horas sean un número entero positivo.
                 int horas_int = Integer.parseInt(horas);
 
                 if (horas_int >= 1) {
@@ -433,6 +434,7 @@ public class Mecanica extends javax.swing.JPanel {
 
                     ArrayList<Oficios> oficios;
 
+                    //Cálculos de costo actual según el tipo de trabajo.
                     for (Cliente cliente : clientes) {
 
                         oficios = cliente.getOficios();
@@ -456,7 +458,7 @@ public class Mecanica extends javax.swing.JPanel {
                                     imprimir = (Double) ((oficio.getDiasTrabajo() + horas_int) * 12000.0);
 
                                 }
-
+                                //Actualizar el costo actual y mostrarlo.
                                 costoACT.setText("costo actual: $" + imprimir);
 
                             }

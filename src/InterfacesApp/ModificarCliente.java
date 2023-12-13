@@ -14,10 +14,6 @@ import javax.swing.JOptionPane;
  */
 public class ModificarCliente extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ModificarCliente
-     */
-    
     private String idCliente;
     private Cliente clienteActual;
    
@@ -31,6 +27,7 @@ public class ModificarCliente extends javax.swing.JPanel {
 
     public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
+        //Cargamos la información.
         cargarInformacionCliente();
     }
     
@@ -235,24 +232,24 @@ public class ModificarCliente extends javax.swing.JPanel {
         //Obtener el valor de CambioTXT
         String Cambio = CambioTXT.getText();
 
-        //Validar si se ingresó un valor
+        //Validar si se ingresó un valor.
         if (Cambio.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un valor para la actualización.", "Alerta", JOptionPane.WARNING_MESSAGE);
         } else {
-            //Actualizar la información del cliente según la opción seleccionada
-            //Verificar qué botón de modificación está seleccionado
+            //Actualizar la información del cliente según la opción seleccionada.
+            //Verificar qué botón de modificación está seleccionado.
              if (BotonNombre.isSelected()) {
-                 //Actualizar el nombre del cliente con nuevoValor
+                 //Actualizar el nombre del cliente con nuevoValor.
                  clienteActual.setNombre(Cambio);
              } else if (BotonPlaca.isSelected()) {
-                 //Actualizar la placa del vehículo con nuevoValor
+                 //Actualizar la placa del vehículo con nuevoValor.
                  clienteActual.getVehiculos().get(0).setPlaca(Cambio);
              } else if (BotonTipo.isSelected()) {
-                 //Actualizar el tipo de vehículo con nuevoValor
+                 //Actualizar el tipo de vehículo con nuevoValor.
                  clienteActual.getVehiculos().get(0).setTipoVehiculo(Cambio);
              }
 
-             //Luego de actualizar la información, guardarmos el cliente actualizado
+             //Luego de actualizar la información, guardarmos el cliente actualizado.
              ClientesCRUD.Update(clienteActual);
 
              JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -277,15 +274,15 @@ public class ModificarCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_BotonPlacaActionPerformed
 
     
-     // Método para cargar la información del cliente actual
+    //Método para cargar la información del cliente actual.
     private void cargarInformacionCliente() {
-        // Obtener la lista de clientes desde el archivo
+        //Obtener la lista de clientes desde el archivo.
         for (Cliente cliente : ClientesCRUD.Read()) {
             if (cliente.getId().equals(idCliente)) {
-                // Asignar el cliente actual
+                //Asignar el cliente actual.
                 clienteActual = cliente;
                 
-                // Mostrar la información en los JLabel correspondientes
+                //Mostrar la información en los JLabel correspondientes.
                 Nombre.setText(cliente.getNombre());
                 Placa.setText(cliente.getVehiculos().get(0).getPlaca());
                 Tipo.setText(cliente.getVehiculos().get(0).getTipoVehiculo());
