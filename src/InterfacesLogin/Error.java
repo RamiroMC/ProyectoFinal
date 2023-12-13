@@ -4,7 +4,6 @@
  */
 package InterfacesLogin;
 
-import InterfacesPrincipales.inicio.LoginNuevo;
 
 /**
  *
@@ -115,14 +114,7 @@ public class Error extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ACEPTARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ACEPTARMouseClicked
-        LoginNuevo p = new LoginNuevo ();
-        p.setSize(500, 500);
-        ContenedorError.removeAll();
-        ContenedorError.add(p);
-        ContenedorError.revalidate();
-        ContenedorError.repaint();
-        ContenedorError.setSize(500, 500);
-        ContenedorError.setLocation(200, 0);
+        
     }//GEN-LAST:event_ACEPTARMouseClicked
 
 

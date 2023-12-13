@@ -356,7 +356,8 @@ public class IniciarTrabajo extends javax.swing.JPanel {
                     ClientesCRUD.Update(cliente);
                     
                     System.out.println( ofAUX.toString()); 
-
+                    
+                   JOptionPane.showMessageDialog(null, "El trabajo se ha creado correctamente", "TRABAJO", JOptionPane.OK_OPTION);
                 }
 
             }
@@ -366,7 +367,9 @@ public class IniciarTrabajo extends javax.swing.JPanel {
 
         }
 
-
+        this.setVisible(false);
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_IniciarTrabajoMouseClicked
 
     private void repMecanicaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_repMecanicaMouseClicked

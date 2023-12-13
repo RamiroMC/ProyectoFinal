@@ -4,19 +4,14 @@
  */
 package InterfacesApp;
 
-import ArchivosCRUD.ClientesCRUD;
 import ArchivosCRUD.InventarioCRUD;
-import ArchivosCRUD.MecanicosCRUD;
 import ObjetosApp.Inventario;
-import ObjetosApp.Vehiculo;
-import Personas.Cliente;
-import Personas.Mecanico;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author JOSE
+ * @author Mondongo
  */
 public class NuevoProducto extends javax.swing.JPanel {
 
@@ -208,6 +203,8 @@ public class NuevoProducto extends javax.swing.JPanel {
                         Inventario producto = new Inventario(nombreProducto, stock_int, precioProducto_float, size_productos + 1);
 
                         InventarioCRUD.Create(producto);
+                        
+                        JOptionPane.showMessageDialog(null, "El producto se ha creado correctamente", "PRODUCTO", JOptionPane.OK_OPTION);
 
                     }
 
@@ -224,6 +221,10 @@ public class NuevoProducto extends javax.swing.JPanel {
 
         Stock.setText("");
         precio.setText("");
+        
+        this.setVisible(false);
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_RegistrarClienteMouseClicked
 
 

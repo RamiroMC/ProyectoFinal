@@ -200,7 +200,7 @@ public class ModificarCliente extends javax.swing.JPanel {
                 .addGap(44, 44, 44)
                 .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContenedorRegistroInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BotonTipo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BotonTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(BotonPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BotonNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -229,19 +229,7 @@ public class ModificarCliente extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    /*TablonInventario p = new TablonInventario();
-        p.setSize(800, 700);
-        ContenedorRegistroIn.removeAll();
-        ContenedorRegistroIn.add(p);
-        ContenedorRegistroIn.revalidate();
-        ContenedorRegistroIn.repaint();
-        ContenedorRegistroIn.setSize(800, 700);
-        ContenedorRegistroIn.setLocation(200, 0);*/
-    
-        
-    
+   
     
     private void ActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ActualizarMouseClicked
         //Obtener el valor de CambioTXT
@@ -264,14 +252,16 @@ public class ModificarCliente extends javax.swing.JPanel {
                  clienteActual.getVehiculos().get(0).setTipoVehiculo(Cambio);
              }
 
-             //Puedes agregar más lógica según las otras opciones que puedas tener
-
-             //Luego de actualizar la información, puedes guardar el cliente actualizado
+             //Luego de actualizar la información, guardarmos el cliente actualizado
              ClientesCRUD.Update(clienteActual);
 
-             //Resto de tu lógica después de actualizar, por ejemplo, mostrar un mensaje de éxito, etc.
              JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         }
+        
+        this.setVisible(false);
+        this.revalidate();
+        this.repaint();
+        
     }//GEN-LAST:event_ActualizarMouseClicked
 
     private void BotonNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNombreActionPerformed

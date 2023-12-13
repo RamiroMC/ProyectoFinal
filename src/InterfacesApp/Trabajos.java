@@ -55,6 +55,7 @@ public class Trabajos extends javax.swing.JPanel {
 
         Contenedor.setBackground(new java.awt.Color(255, 255, 255));
         Contenedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Contenedor.setEnabled(false);
         Contenedor.setPreferredSize(new java.awt.Dimension(800, 700));
         Contenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -122,6 +123,7 @@ public class Trabajos extends javax.swing.JPanel {
                 "Id Trabajo", "Id Cliente", "Id Mecanico", "Fecha Inicio", "Plazo", "Costo"
             }
         ));
+        tablaTRABAJOS.setEnabled(false);
         jScrollPane1.setViewportView(tablaTRABAJOS);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -195,7 +197,7 @@ public class Trabajos extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,7 +245,7 @@ public class Trabajos extends javax.swing.JPanel {
                     mecanicoExiste = true;
                 }
 
-                if ((oficio.getIdTrabajo().equals(idTrabajoAUX) && oficio.getIdMecanico().equals(idMecanico))) {
+                if ((oficio.getIdTrabajo().equals(idTrabajoAUX) && oficio.getIdMecanico().equals(idMecanico) && oficio.getPagado() == false && oficio.getEstadoTrabajo() == true)) {
 
                     Mecanica m = new Mecanica();
                     m.setIdTrabajoAUX(idTrabajoAUX);
@@ -271,7 +273,7 @@ public class Trabajos extends javax.swing.JPanel {
         } else if (mecanicoExiste == false) {
             JOptionPane.showMessageDialog(null, "el mecanico " + idMecanico + " no tiene permiso para modificar este trabajo", "Alerta", JOptionPane.WARNING_MESSAGE);
 
-        }
+        } 
 
         buscarTrabajoTXT.setText("");
 
@@ -310,7 +312,7 @@ public class Trabajos extends javax.swing.JPanel {
     }//GEN-LAST:event_mostrarBTNMouseClicked
 
     private void ContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ContenedorMouseClicked
-       this.requestFocus();
+        this.requestFocus();
     }//GEN-LAST:event_ContenedorMouseClicked
 
 

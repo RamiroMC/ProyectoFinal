@@ -4,11 +4,20 @@
  */
 package InterfacesApp;
 
+import ArchivosCRUD.ClientesCRUD;
+import Personas.Cliente;
+import Trabajo.Oficios;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MADE
  */
 public class Caja extends javax.swing.JPanel {
+
+    private double totalPagar = 0;
 
     /**
      * Creates new form Caja
@@ -29,16 +38,14 @@ public class Caja extends javax.swing.JPanel {
         TablonCaja = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        IdClienteTXT = new javax.swing.JTextField();
+        BuscarIdCliente = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        ValorTXT = new javax.swing.JLabel();
+        Cobrar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaTrabajos = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(800, 700));
 
@@ -59,88 +66,74 @@ public class Caja extends javax.swing.JPanel {
         jLabel1.setText("IDENTIFICACION DEL CLIENTE:");
         TablonCaja.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 72, 259, 61));
 
-        jTextField1.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        IdClienteTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        IdClienteTXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                IdClienteTXTActionPerformed(evt);
             }
         });
-        TablonCaja.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 72, 288, 61));
+        TablonCaja.add(IdClienteTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 72, 288, 61));
 
-        jLabel2.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("BUSCAR");
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        TablonCaja.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 72, 214, 61));
+        BuscarIdCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        BuscarIdCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BuscarIdCliente.setText("BUSCAR");
+        BuscarIdCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BuscarIdCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BuscarIdClienteMouseClicked(evt);
+            }
+        });
+        TablonCaja.add(BuscarIdCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 72, 214, 61));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel22.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("TOTAL DE PRODUCTOS:");
-        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel23.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("valor total:");
         jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel24.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        ValorTXT.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        ValorTXT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ValorTXT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel25.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel28.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("cobrar");
-        jLabel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Cobrar.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
+        Cobrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Cobrar.setText("cobrar");
+        Cobrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Cobrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CobrarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap(9, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(393, 393, 393)))
-                .addGap(26, 26, 26))
+                .addComponent(ValorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                .addComponent(Cobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Cobrar, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ValorTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         TablonCaja.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 488, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaTrabajos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -151,7 +144,8 @@ public class Caja extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        TablaTrabajos.setEnabled(false);
+        jScrollPane1.setViewportView(TablaTrabajos);
 
         TablonCaja.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 800, 350));
 
@@ -164,29 +158,128 @@ public class Caja extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(TablonCaja, javax.swing.GroupLayout.DEFAULT_SIZE, 973, Short.MAX_VALUE)
+                .addComponent(TablonCaja, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void IdClienteTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdClienteTXTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_IdClienteTXTActionPerformed
+
+    private void BuscarIdClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarIdClienteMouseClicked
+        // TODO add your handling code here:
+        //Obtener el ID ingresado
+        String idCliente = IdClienteTXT.getText();
+
+        if (idCliente.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Digite una id", "Alerta", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            boolean encontrado = false;
+
+            ArrayList<Cliente> clientes = ClientesCRUD.Read();
+
+            ArrayList<Oficios> oficios;
+
+            DefaultTableModel model = new DefaultTableModel();
+
+            model.addColumn("ID DEL TRABAJO");
+            model.addColumn("ESTADO");
+            model.addColumn("TOTAL PAGAR");
+
+            for (Cliente cliente : clientes) {
+
+                if (cliente.getId().equals(idCliente)) {
+
+                    oficios = cliente.getOficios();
+
+                    for (Oficios oficio : oficios) {
+
+                        if (oficio.getEstadoTrabajo() == false && oficio.getPagado() == false) {
+
+                            model.addRow(new Object[]{oficio.getIdTrabajo(), "FINALIZADO", oficio.cotizarPrecio()});
+
+                            totalPagar += oficio.cotizarPrecio();
+
+                        }
+
+                    }
+
+                    encontrado = true;
+                    break;
+                }
+
+            }
+
+            if (encontrado == false) {
+                JOptionPane.showMessageDialog(null, "Id del cliente no registrada", "Alerta", JOptionPane.WARNING_MESSAGE);
+            }
+
+            ValorTXT.setText(totalPagar + "");
+            TablaTrabajos.setModel(model);
+        }
+
+    }//GEN-LAST:event_BuscarIdClienteMouseClicked
+
+    private void CobrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CobrarMouseClicked
+        // TODO add your handling code here:
+        String idCliente = IdClienteTXT.getText();
+
+        ArrayList<Cliente> clientes = ClientesCRUD.Read();
+
+        ArrayList<Oficios> oficios;
+
+        boolean encontrado = false;
+
+        for (Cliente cliente : clientes) {
+
+            if (cliente.getId().equals(idCliente)) {
+
+                oficios = cliente.getOficios();
+
+                for (Oficios oficio : oficios) {
+
+                    if (oficio.getEstadoTrabajo() == false && oficio.getPagado() == false) {
+                        
+                        oficio.setPagado(true);
+            
+                    }
+
+                }
+                
+                cliente.setOficios(oficios);
+                
+                ClientesCRUD.Update(cliente);
+                
+                encontrado = true;
+                break;
+            }
+
+        }
+        
+        if (encontrado == false) {
+            JOptionPane.showMessageDialog(null, "Id del cliente no registrada", "Alerta", JOptionPane.WARNING_MESSAGE);
+        }
+
+        JOptionPane.showMessageDialog(null, "Se ha pagado con exito", "PAGO EXITOSO", JOptionPane.OK_OPTION);
+        this.setVisible(false);
+        this.revalidate();
+        this.repaint();
+    }//GEN-LAST:event_CobrarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BuscarIdCliente;
+    private javax.swing.JLabel Cobrar;
+    private javax.swing.JTextField IdClienteTXT;
+    private javax.swing.JTable TablaTrabajos;
     private javax.swing.JPanel TablonCaja;
+    private javax.swing.JLabel ValorTXT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

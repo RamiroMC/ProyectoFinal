@@ -225,10 +225,10 @@ public class TablaClientes extends javax.swing.JPanel {
 
     private void mostrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarBTNMouseClicked
 
-        // Supongamos que tienes un ArrayList bidimensional
+        //Supongamos que tienes un ArrayList bidimensional
         ArrayList<Cliente> datos = ClientesCRUD.Read();
 
-        // Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
+        //Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
         DefaultTableModel model = new DefaultTableModel();
 
         model.addColumn("Nombre");

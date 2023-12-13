@@ -107,7 +107,12 @@ public class RegistrarClientes extends javax.swing.JPanel {
 
         IdCliente.setFont(new java.awt.Font("Showcard Gothic", 0, 14)); // NOI18N
 
-        tipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MOTO", "CARRO", "BICICLETA", "BUS", "CAMION" }));
+        tipoVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoVehiculoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout RegistroPanelLayout = new javax.swing.GroupLayout(RegistroPanel);
         RegistroPanel.setLayout(RegistroPanelLayout);
@@ -232,7 +237,7 @@ public class RegistrarClientes extends javax.swing.JPanel {
                 }
 
             }
-            
+
             for (Mecanico mecanico : mecanicos) {
 
                 if (mecanico.getId().equals(idCliente)) {
@@ -255,6 +260,8 @@ public class RegistrarClientes extends javax.swing.JPanel {
 
                 ClientesCRUD.Create(cAux);
 
+                JOptionPane.showMessageDialog(null, "El cliente se ha creado correctamente", "CLIENTE", JOptionPane.OK_OPTION);
+
             }
 
             NombreCliente.setText("");
@@ -265,8 +272,14 @@ public class RegistrarClientes extends javax.swing.JPanel {
 
         }
 
-
+        this.setVisible(false);
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_RegistrarClienteMouseClicked
+
+    private void tipoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoVehiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoVehiculoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

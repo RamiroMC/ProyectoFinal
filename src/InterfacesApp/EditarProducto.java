@@ -273,7 +273,9 @@ public class EditarProducto extends javax.swing.JPanel {
         Stock.setText("");
         precio.setText("");
 
-
+        this.setVisible(false);
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_actualizarBTNMouseClicked
 
 

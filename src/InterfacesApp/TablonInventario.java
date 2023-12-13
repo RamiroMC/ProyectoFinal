@@ -113,6 +113,7 @@ public class TablonInventario extends javax.swing.JPanel {
                 "Id", "Nombre", "Cantidad", "Precio Unidad"
             }
         ));
+        tablaPRODUCTOS.setEnabled(false);
         jScrollPane1.setViewportView(tablaPRODUCTOS);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -263,10 +264,10 @@ public class TablonInventario extends javax.swing.JPanel {
     }//GEN-LAST:event_BuscarProductoMouseClicked
 
     private void MostrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MostrarBTNMouseClicked
-        // Supongamos que tienes un ArrayList bidimensional
+        //Supongamos que tienes un ArrayList bidimensional
         ArrayList<Inventario> datos = InventarioCRUD.Read();
 
-        // Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
+        //Crear un DefaultTableModel con datos bidimensionales y establecerlo en la JTable
         DefaultTableModel model = new DefaultTableModel();
 
         model.addColumn("Id");
@@ -274,7 +275,7 @@ public class TablonInventario extends javax.swing.JPanel {
         model.addColumn("Cantidad");
         model.addColumn("Precio Unidad");
 
-        // Agregar las filas al modelo
+        //Agregar las filas al modelo
         for (Inventario fila : datos) {
 
             model.addRow(new Object[]{fila.getId(), fila.getNombre(), fila.getCantidad(), fila.getPrecio()});

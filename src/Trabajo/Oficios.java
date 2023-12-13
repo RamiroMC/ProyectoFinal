@@ -13,22 +13,39 @@ import java.time.LocalDate;
 public class Oficios extends Trabajo {
 
     private String tipoTrabajo; //MECANICA O LATONERIA O REVISION
+    private boolean pagado;
 
     //Constructor
     public Oficios(String idTrabajo, String tipoTrabajo, LocalDate fechaInicio, int plazoMaximo, String idCliente, String mecanico,
             String detalles) {
 
         super(idTrabajo, fechaInicio, plazoMaximo, idCliente, mecanico, detalles);
-        
-        this.tipoTrabajo = tipoTrabajo;
 
+        this.tipoTrabajo = tipoTrabajo;
+        pagado = false;
     }
 
     //Implementación del método abstracto cotizarPrecio para Oficios
     @Override
     public double cotizarPrecio() {
+        
+        double precioFinal = 0;
 
-        return 1500;  // Solo un ejemplo, debes ajustar según tus necesidades
+        if (tipoTrabajo.equals("REPARACION MECANICA")) {
+
+            precioFinal = this.getDiasTrabajo() * 12000 + this.getPrecioMaterial() * 1.1;
+
+        } else if (tipoTrabajo.equals("REPARACION LATONERIA")) {
+
+            precioFinal = this.getDiasTrabajo() * 12000 + this.getPrecioMaterial() * 1.3;
+
+        } else if (tipoTrabajo.equals("REVISION")) {
+
+            precioFinal = this.getDiasTrabajo() * 12000;
+
+        }
+
+        return precioFinal;
     }
 
     public String getTipoTrabajo() {
@@ -39,6 +56,17 @@ public class Oficios extends Trabajo {
         this.tipoTrabajo = tipoTrabajo;
     }
 
+    public boolean getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(boolean pagado) {
+        this.pagado = pagado;
+    }
+    
+    
+    
+    
     @Override
     public String toString() {
         return "Trabajo{"
@@ -53,6 +81,7 @@ public class Oficios extends Trabajo {
                 + ", detalles = '" + this.getDetalles() + '\''
                 + ", cliente = " + this.getIdCliente()
                 + ", mecanico = " + this.getIdMecanico()
+                + ", Pagado = " + this.getPagado()
                 + '}';
 
     }

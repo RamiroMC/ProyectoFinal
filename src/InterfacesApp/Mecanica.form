@@ -94,7 +94,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace type="unrelated" pref="42" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" pref="36" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="costoACT" min="-2" pref="299" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">

@@ -372,7 +372,9 @@ public class Mecanica extends javax.swing.JPanel {
 
         horasTXT.setText("");
        
-
+        this.setVisible(false);
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_actualizarBTNMouseClicked
 
     private void materialTXTFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_materialTXTFocusLost
